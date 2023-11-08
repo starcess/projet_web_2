@@ -1,7 +1,7 @@
 <?php
 class Utilisateur
 {
-// allo je me suis connectée
+
     private $db;
     public function __construct($database)
     {
