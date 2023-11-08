@@ -1,0 +1,120 @@
+/* body{
+    height: 100%;
+    width: 100%;
+    background-color: #173886;
+    padding: 5%;
+}
+
+#item_container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2%; 
+}
+
+.produit {
+    width: 5%;
+    height: 5%;
+    /* background-color: #f0f0f0; 
+    text-align: center;
+    padding: 2%;
+    border: 15% solid #e674d7;
+}
+
+.cravatte {
+    
+}
+
+.chemise {
+} */
+
+
+
+
+
+/* Set the background color of the body to black */
+body {
+    background-color: rgb(0, 0, 0);
+    height: 100%;
+    width: 100%;
+    /* color: aliceblue; */
+    /* margin: 0;
+    padding: 0; */
+}
+
+/* Style the grid container */
+#item_container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 0.5fr); /* 4 equal columns */
+    /* gap: 2%; Add some space between grid items */
+    /* padding: 5%; Add some padding to the grid container */
+    justify-items: center;
+    align-items: center;
+    /* padding-right: 10%; */
+    /* border-left: 3px solid #ffffff; */
+    gap: 5%;
+}
+
+/* Style the grid items */
+/* .produit {
+    background-color: transparent; 
+    border: 1px solid yellow; 
+    /* padding: 2%; 
+    text-align: center;
+    color: white; 
+} */
+
+
+.produit {
+    background-color: transparent; /* Set the background of the grid items to transparent */
+    /* border-top: 5px solid #ff6ec7; Pink border at the top of the .produit element */
+    /* border-bottom:5px solid #ff6ec7;; Pink border at the bottom of the .produit element */
+    /* border-left: 5px solid #ffec05; Yellow border on the left side of the .produit element */
+    /* border-right: 5px solid  #ffec05; Yellow border on the right side of the .produit element */
+    /* padding: 2%; */
+    text-align: center;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+
+/* Apply pink border to every 3th item, creating row lines */
+/* .produit:nth-child(3n) {
+    border-bottom: 1px solid pink;
+} */
+
+img {
+    width: 60%;
+    height: 80%;
+}
+
+.magasin_container {
+    display: grid;
+    /* grid-template-rows: repeat(1fr, 2fr); */
+    grid-template-columns: 0.5fr 2fr;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-items: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: black;
+    gap: 5%;
+    padding: 10%;
+}
+
+
+
+/* To select and deactivate the bottom borders for the last row, I can do something like this: */
+/* .item_container div:nth-child(9) ~ div {
+    border-bottom: none;
+}
+
+.item_container div:nth-child(3n) {
+    border-right: none;
+}
+
+ */
