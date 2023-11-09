@@ -22,10 +22,18 @@ class Utilisateur
     }
     public function getUserByEmail($email)
     {
-        $result = $this->db->query("SELECT * FROM utilisateur WHERE courriel=?");
+        $result = $this->db->query("SELECT * FROM utilisateur WHERE email=?");
         $result->execute([$email]);
         return $result->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getUserByEmailAndPassword($email, $password)
+    {
+        $result = $this->db->query("SELECT * FROM utilisateur WHERE email=?");
+        $result->execute([$email]);
+        return $result->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function createUser($data)
     {
         $sql = "INSERT INTO utilisateur (Nom, Courriel,MotDePasse,InscritInfolettre,accesUser) VALUES (?,?,?,?,?)";

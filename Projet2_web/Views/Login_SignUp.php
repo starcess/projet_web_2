@@ -20,7 +20,7 @@
             <button onclick="showSignUpForm()">Sign Up</button>
             <button onclick="showLoginForm()">Login</button>
 
-            <form id="signup-form" action="./api/signup" method="POST">
+            <form id="signup-form" action="/Projet2_web/signup" method="POST">
                 <h2>Sign Up</h2>
                 <label for="nom">Nom:</label>
                 <input id="nom" name="nom" required><br><br>
@@ -28,24 +28,24 @@
                 <label for="prenom">Prenom:</label>
                 <input id="prenom" name="prenom" required><br><br>
 
-                <label for="signup-email">Email:</label>
-                <input id="signup-email" name="email" required><br><br>
+                <label for="email">Email:</label>
+                <input id="email" name="email" required><br><br>
 
-                <label for="signup-password">mot_de_passe:</label>
-                <input id="signup-password" name="mot_de_passe" required><br><br>
+                <label for="password">mot_de_passe:</label>
+                <input id="signup_password" name="password" required><br><br>
                 <!-- <input type="password" id="signup-password" name="mot_de_passe" required><br><br> -->
-                <input type="submit" name="SignUp" value="SignUp">
+                <button  class="signup_button" type="submit" name="SignUp" value="SignUp">
             </form>
 
-            <form id="login-form" action="./api/login" method="POST">
+            <form id="login-form" action="/Projet2_web/login" method="POST">
                 <h2>Login</h2>
                 <label for="email">Email:</label>
-                <input id="login-email" name="email" required><br><br>
+                <input id="email" name="email" required><br><br>
 
-                <label for="mot_de_passe">mot_de_passe:</label>
-                <input id="signup-password" name="mot_de_passe" required><br><br>
+                <label for="password">mot_de_passe:</label>
+                <input id="login_password" name="password" required><br><br>
                 <!-- <input type="password" id="login-password" name="mot_de_passe" required><br><br> -->
-                <button type="submit" name="Login" value="Login">
+                <button class="login_button" type="submit" name="Login" value="Login">
             </form>
         </div>
 

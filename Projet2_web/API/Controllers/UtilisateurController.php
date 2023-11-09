@@ -47,7 +47,7 @@ class UtilisateurController
   public function grantAdminAccess($email, $password)
   {
     if ($this->verifyUser($email, $password)) {
-      $user = $this->model->getUserByEmail($email);
+      $user = $this->model->getUserByEmailAndPassword($email,$password);
       session_start();
       if ($user['role'] == 'admin') {
         $_SESSION['admin']['isAuth'] = true;

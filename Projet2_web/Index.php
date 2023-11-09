@@ -50,8 +50,9 @@ function logTheUser($controller_utilisateur)
 {
     $data = $_POST;
     $email = $data['email'];
+    $password = $data['password'];
     echo "email : " . $email . "<br>";
-    $password = $data['mot_de_passe'];
+    echo "password : " . $password . "<br>";
     $controller_utilisateur->login($email, $password);
     $result = isAuthenticated();
     // print("RB_2" . $result . "<br>");
@@ -96,18 +97,18 @@ switch ($method | $uri) {
         if ($uri == '/') {
             // print(__DIR__ . '/Views/Accueil.php');
             header('Location: __DIR__' . '/../Views/Accueil.php');
-             // print('YO acceuil_images');
+            // print('YO acceuil_images');
             //print(__DIR__ . '/Views/Account.php');
             // $data = $controller_produit->getAllProduit();
             // print_r($data);
             // return json_encode($data);
-       
+
         }
         break;
     case ($method == 'GET' && $uri == '/Magasin'):
         if ($uri == '/Magasin') {
             print('YO magasin');
-            
+
             //print(__DIR__ . '/Views/Magasin.php');
             header('Location: __DIR__' . '/../Views/Magasin.php');
         }
@@ -151,6 +152,17 @@ switch ($method | $uri) {
             // return print('YO Infolettre');
             header('Location: __DIR__' . '/../Views/Infolettre.php');
             // exit;
+        }
+        break;
+    case ($method == 'POST' && $uri == '/Login'):
+        if (isset($_POST['Login'])) { 
+            $isAdmin = logTheUser($controller);
+            // showUtilisateurs($isAdmin, $controller);
+        }
+        break;
+    case ($method == 'POST' && $uri == '/SignUp'):
+        if ($uri == '/SignUp') {
+
         }
         break;
     default:
