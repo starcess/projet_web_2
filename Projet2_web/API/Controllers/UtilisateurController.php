@@ -45,7 +45,7 @@ class UtilisateurController
   {
     $email = $data['email'];
     $users = $this->getAllUsers();
-    if(count($users) > 0) {
+    if (count($users) > 0) {
       for ($i = 0; $i < count($users); $i++) {
         if ($users[$i]['Courriel'] == $email) {
           return true;
@@ -82,6 +82,10 @@ class UtilisateurController
 
   public function login($email, $password)
   {
+    if (session_status() == PHP_SESSION_NONE) {
+      session_start();
+    }
+
     $userIsInDatabase = $this->verifyUser($email, $password);
     print("UtlisateurContoller - RB_2973 " . $userIsInDatabase . "<br>");
     if ($userIsInDatabase) {

@@ -1,7 +1,5 @@
 <?php
 
-
-
 require __DIR__ . "/API/Controllers/UtilisateurController.php";
 require __DIR__ . "/API/Controllers/ProduitController.php";
 require __DIR__ . "/API/DbManager/DatabaseManager.php";
@@ -130,10 +128,10 @@ switch ($method | $uri) {
         if ($uri == '/Account') {
             // print('YO Account');
             //print(__DIR__ . '/Views/Account.php');
-            $bool = false;
-            if ($bool == true) {
+            $bool = verifyLoginAuthentification();
+            if ($bool) {
                 header('Location: __DIR__' . '/../Views/Account.php');
-            } else if ($bool == false) {
+            } else {
                 header('Location: __DIR__' . '/../Views/Login_SignUp.php');
             }
         }
@@ -176,7 +174,9 @@ switch ($method | $uri) {
                 $user = $controller_utilisateur->getUserByEmail($data['email']);
                 echo 'logged user :  ';
                 print_r($user) . '<br>';
-                // header('Location: __DIR__' . '/../Views/Account.php');
+                header('Location: __DIR__' . '/../Views/Account.php');
+            }else{
+                header('Location: __DIR__' . '/../Views/Login_SignUp.php');
             }
             // showUtilisateurs($isAdmin, $controller);
         }
@@ -185,8 +185,11 @@ switch ($method | $uri) {
         if (isset($_POST['signup'])) {
             $userIsCreated = createUser($controller_utilisateur);
             echo 'userIsCreated : ' . $userIsCreated . '<br>';
-            // header('Location: __DIR__' . '/../Views/Account.php');
-
+            if ($userIsCreated) {
+                header('Location: __DIR__' . '/../Views/Account.php');
+            } else {
+                header('Location: __DIR__' . '/../Views/Login_SignUp.php');
+            }
         }
         break;
     default:
