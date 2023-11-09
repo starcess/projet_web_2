@@ -92,6 +92,19 @@ function endConnection()
 }
 
 
+function createUser($controller_utilisateur)
+{
+    $data = $_POST;
+    $data = $_POST;
+    // $nom = $data['nom'];
+    // $prenom = $data['prenom'];
+    // $email = $data['email'];
+    // $password = $data['password'];
+    $isCreated = $controller_utilisateur->createUser($data);
+    return $isCreated;
+}
+
+
 switch ($method | $uri) {
     case ($method == 'GET' && $uri == '/'):
         if ($uri == '/') {
@@ -154,15 +167,15 @@ switch ($method | $uri) {
             // exit;
         }
         break;
-    case ($method == 'POST' && $uri == '/Login'):
-        if (isset($_POST['Login'])) { 
+    case ($method == 'POST' && $uri == '/login'):
+        if (isset($_POST['login'])) {
             $isAdmin = logTheUser($controller);
             // showUtilisateurs($isAdmin, $controller);
         }
         break;
-    case ($method == 'POST' && $uri == '/SignUp'):
-        if ($uri == '/SignUp') {
-
+    case ($method == 'POST' && $uri == '/signup'):
+        if (isset($_POST['signup'])) {
+            $userIsCreated = createUser($controller_utilisateur);
         }
         break;
     default:

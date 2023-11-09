@@ -34,8 +34,8 @@
                 <label for="signup_password">Password:</label>
                 <input id="signup_password" name="password" type="password" required><br><br>
 
-                <button class="signup_button" type="submit" name="SignUp">SignUp</button>
-                <button class="close_button"  onclick="showLoginOrSignupButton()">close</button>
+                <button class="signup_button" type="submit" name="signup">SignUp</button>
+                <button class="close_button" type="button" onclick="showLoginOrSignupButton()">close</button>
             </form>
 
             <form id="login-form" action="/projet_web_2/Projet2_web/login" method="POST">
@@ -47,8 +47,8 @@
                 <label for="login_password">Password:</label>
                 <input id="login_password" name="password" type="password" required><br><br>
 
-                <button class="login_button" type="submit" name="Login">Login</button>
-                <button class="close_button"  onclick="showLoginOrSignupButton()">close</button>
+                <button class="login_button" type="submit" name="login">Login</button>
+                <button class="close_button" type="button"  onclick="showLoginOrSignupButton()">close</button>
             </form>
         </div>
     </div>
