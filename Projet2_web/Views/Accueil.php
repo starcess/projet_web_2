@@ -60,7 +60,7 @@ session_start();
 
 
     <script>
-        const url = '/Projet2_web/acceuil_images';
+        const url = '/projet_web_2/Projet2_web/acceuil_images';
         // echo "URI : " . $uri . "<br>";
         // echo "Méthode : " . $method . "<br>";
         // console.log("hi");

@@ -28,9 +28,9 @@ $uri = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 // print("RB_74 : " . $method . "<br>");
 $exploded_uri = explode('/', $uri);
-$uri = "/" . implode('/', array_splice($exploded_uri, 2));
+$uri = "/" . implode('/', array_splice($exploded_uri, 3));
 // print("RB_5 : " . $uri . "<br>");
-//  echo "URI : " . $uri . "<br>";
+// echo "URI : " . $uri . "<br>";
 // echo "Méthode : " . $method . "<br>";
 
 

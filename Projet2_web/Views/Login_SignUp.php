@@ -9,64 +9,67 @@
 </head>
 
 <body>
-    <!-- A button to open the popup form -->
-    <!-- <button class="open-button" onclick="openForm()">Open Form</button> -->
-
-    <!-- The form -->
     <?php include('navigation.php'); ?>
 
     <div class="body_box">
         <div class="form-popup" id="myForm">
-            <button onclick="showSignUpForm()">Sign Up</button>
-            <button onclick="showLoginForm()">Login</button>
 
-            <form id="signup-form" action="/Projet2_web/signup" method="POST">
+            <div id="showLoginOrSignupButton">
+                <button class="showSignup" onclick="showSignUpForm()">Sign Up</button>
+                <button class="showLogin" onclick="showLoginForm()">Login</button>
+            </div>
+
+            <form id="signup-form" action="/projet_web_2/Projet2_web/signup" method="POST" style="display: none;">
                 <h2>Sign Up</h2>
-                <label for="nom">Nom:</label>
-                <input id="nom" name="nom" required><br><br>
 
-                <label for="prenom">Prenom:</label>
-                <input id="prenom" name="prenom" required><br><br>
+                <label for="signup_nom">Nom:</label>
+                <input id="signup_nom" name="nom" required><br><br>
 
-                <label for="email">Email:</label>
-                <input id="email" name="email" required><br><br>
+                <label for="signup_prenom">Prenom:</label>
+                <input id="signup_prenom" name="prenom" required><br><br>
 
-                <label for="password">mot_de_passe:</label>
-                <input id="signup_password" name="password" required><br><br>
-                <!-- <input type="password" id="signup-password" name="mot_de_passe" required><br><br> -->
-                <button  class="signup_button" type="submit" name="SignUp" value="SignUp">
+                <label for="signup_email">Email:</label>
+                <input id="signup_email" name="email" type="email" required><br><br>
+
+                <label for="signup_password">Password:</label>
+                <input id="signup_password" name="password" type="password" required><br><br>
+
+                <button class="signup_button" type="submit" name="SignUp">SignUp</button>
+                <button class="close_button"  onclick="showLoginOrSignupButton()">close</button>
             </form>
 
-            <form id="login-form" action="/Projet2_web/login" method="POST">
+            <form id="login-form" action="/projet_web_2/Projet2_web/login" method="POST">
                 <h2>Login</h2>
-                <label for="email">Email:</label>
-                <input id="email" name="email" required><br><br>
+                <!-- Other fields -->
+                <label for="login_email">Email:</label>
+                <input id="login_email" name="email" type="email" required><br><br>
 
-                <label for="password">mot_de_passe:</label>
-                <input id="login_password" name="password" required><br><br>
-                <!-- <input type="password" id="login-password" name="mot_de_passe" required><br><br> -->
-                <button class="login_button" type="submit" name="Login" value="Login">
+                <label for="login_password">Password:</label>
+                <input id="login_password" name="password" type="password" required><br><br>
+
+                <button class="login_button" type="submit" name="Login">Login</button>
+                <button class="close_button"  onclick="showLoginOrSignupButton()">close</button>
             </form>
         </div>
-
     </div>
-
-
-
-    <style>
-     
-    </style>
-
 
     <script>
         function showSignUpForm() {
             document.getElementById("signup-form").style.display = "block";
             document.getElementById("login-form").style.display = "none";
+            document.getElementById("showLoginOrSignupButton").style.display = "none";
         }
 
         function showLoginForm() {
             document.getElementById("signup-form").style.display = "none";
             document.getElementById("login-form").style.display = "block";
+            document.getElementById("showLoginOrSignupButton").style.display = "none";
+        }
+
+        function showLoginOrSignupButton(){
+            document.getElementById("signup-form").style.display = "none";
+            document.getElementById("login-form").style.display = "none";
+            document.getElementById("showLoginOrSignupButton").style.display = "block";
         }
     </script>
 </body>

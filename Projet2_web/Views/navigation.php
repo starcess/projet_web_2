@@ -57,7 +57,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <script>
 
         function getAccueil() {
-            const url = '/Projet2_web/Acceuil';
+            const url = '/projet_web_2/Projet2_web/Acceuil';
             fetch(url)
                 .then(response => {
                     if (response.status !== 200) {
@@ -83,7 +83,7 @@ if (session_status() == PHP_SESSION_NONE) {
         }
 
         function getMagasin() {
-            const url = '/Projet2_web/Magasin';
+            const url = '/projet_web_2/Projet2_web/Magasin';
             fetch(url)
                 .then(response => {
                     if (response.status !== 200) {
@@ -110,7 +110,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 
         function getAccount() {
-            const url = '/Projet2_web/Account';
+            const url = '/projet_web_2/Projet2_web/Account';
             fetch(url)
                 .then(response => {
                     if (response.status !== 200) {
@@ -141,7 +141,7 @@ if (session_status() == PHP_SESSION_NONE) {
         }
 
         function getInfolettre() {
-            const url = '/Projet2_web/Infolettre';
+            const url = '/projet_web_2/Projet2_web/Infolettre';
             fetch(url)
                 .then(response => {
                     if (response.status !== 200) {

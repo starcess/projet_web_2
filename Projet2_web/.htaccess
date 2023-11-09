@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /projet_web_2/Projet2_web/
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ /projet_web_2/Projet2_web/index.php [QSA,L]
