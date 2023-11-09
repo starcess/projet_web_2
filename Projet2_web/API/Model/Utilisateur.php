@@ -16,20 +16,20 @@ class Utilisateur
 
     public function getUserById($id)
     {
-        $result = $this->db->query("SELECT * FROM utilisateur WHERE id=?");
+        $result = $this->db->prepare("SELECT * FROM utilisateur WHERE id=?");
         $result->execute([$id]);
         return $result->fetch(PDO::FETCH_ASSOC);
     }
     public function getUserByEmail($email)
     {
-        $result = $this->db->query("SELECT * FROM utilisateur WHERE email=?");
+        $result = $this->db->prepare("SELECT * FROM utilisateur WHERE Courriel = ?");
         $result->execute([$email]);
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getUserByEmailAndPassword($email, $password)
     {
-        $result = $this->db->query("SELECT * FROM utilisateur WHERE email=?");
+        $result = $this->db->prepare("SELECT * FROM utilisateur WHERE Courriel=?");
         $result->execute([$email]);
         return $result->fetch(PDO::FETCH_ASSOC);
     }

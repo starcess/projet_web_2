@@ -37,33 +37,42 @@ class UtilisateurController
   private function verifyUser($email, $password)
   {
     $user = $this->model->getUserByEmail($email);
+    print_r( $user);    
+    print("<br>");
     if ($user) {
-      if (password_verify($password, $user['password'])) {
+      $isPassword = password_verify($password, $user['MotDePasse']);
+      print("UtlisateurContoller - RB_2976 - isPassword : " . $isPassword . "<br>");
+      if ($isPassword) {
         return true;
       }
     }
     return false;
   }
-  public function grantAdminAccess($email, $password)
-  {
-    if ($this->verifyUser($email, $password)) {
-      $user = $this->model->getUserByEmailAndPassword($email,$password);
-      session_start();
-      if ($user['role'] == 'admin') {
-        $_SESSION['admin']['isAuth'] = true;
-        $_SESSION['admin']['role'] = 'admin';
-      } else {
-        $_SESSION['admin']['isAuth'] = false;
-      }
-    }
-  }
+  // public function grantAdminAccess($email, $password)
+  // {
+  //   if ($this->verifyUser($email, $password)) {
+  //     // $user = $this->model->getUserByEmailAndPassword($email,$password);
+  //     // session_start();
+  //     // if ($user['role'] == 'admin') {
+  //     $_SESSION['isAuthenticated'] = true;
+  //     // $_SESSION['admin']['role'] = 'admin';
+  //   } else {
+  //     $_SESSION['isAuthenticated'] = false;
+  //   }
+  // }
+
   public function login($email, $password)
   {
-    if ($this->verifyUser($email, $password)) {
-
-      $_SESSION['authentifie'] = true;
-      $this->grantAdminAccess($email, $password);
+    $userIsInDatabase = $this->verifyUser($email, $password);
+    print("UtlisateurContoller - RB_2973 " .$userIsInDatabase . "<br>");
+    if ($userIsInDatabase) {
+      $_SESSION['isAuthenticated'] = true;
+       print("UtlisateurContoller - RB_2974 " . $_SESSION['isAuthenticated'] . "<br>");
+    } else {
+      $_SESSION['isAuthenticated'] = false;
+      print("UtlisateurContoller - RB_2975 " . $_SESSION['isAuthenticated'] . "<br>");
     }
   }
+
 }
 ?>

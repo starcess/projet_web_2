@@ -34,15 +34,15 @@ $uri = "/" . implode('/', array_splice($exploded_uri, 3));
 // echo "Méthode : " . $method . "<br>";
 
 
-function isAuthenticated()
+function verifyLoginAuthentification()
 {
     // session_start();
     // print_r("RB_9 isSessionStarted : " .$_SESSION . "<br>");
-    echo "RB_75 :" . isset($_SESSION['admin']) . "<br>";
-    echo "RB_76 :" . $_SESSION['admin']['isAuth'] . "<br>";
-    $verify = isset($_SESSION['admin']) && $_SESSION['admin']['isAuth'] == true;
-    // print("RB_1" . $verify . "<br>");
-    return $verify;
+    // echo "RB_75 :" . isset($_SESSION['admin']) . "<br>";
+    // echo "RB_76 :" . $_SESSION['isAuthenticated'] . "<br>";
+    $isAuthenticated = $_SESSION['isAuthenticated'] == true;
+    // print("RB_1" . $isAuthenticated . "<br>");
+    return $isAuthenticated;
 }
 
 
@@ -54,7 +54,7 @@ function logTheUser($controller_utilisateur)
     echo "email : " . $email . "<br>";
     echo "password : " . $password . "<br>";
     $controller_utilisateur->login($email, $password);
-    $result = isAuthenticated();
+    $result = verifyLoginAuthentification();
     // print("RB_2" . $result . "<br>");
     echo "result : " . $result . "<br>";
     return $result;
@@ -66,7 +66,7 @@ function showUtilisateurs($isAdmin, $controller_utilisateur)
     if ($isAdmin) {
         echo "Login successful" . "<br>";
         header('Location:  __DIR__' . '/../../spa.php');
-        // echo 'isAuthenticated() = true -  eee' . '<br>';
+        // echo 'verifyLoginAuthentification() = true -  eee' . '<br>';
         $users = $controller_utilisateur->getAllUsers();
         echo "RB_63" . json_encode($users) . "<br>";
         // endConnection(); 
@@ -169,7 +169,8 @@ switch ($method | $uri) {
         break;
     case ($method == 'POST' && $uri == '/login'):
         if (isset($_POST['login'])) {
-            $isAdmin = logTheUser($controller);
+            $isAdmin = logTheUser($controller_utilisateur);
+            echo 'The user exist ? ' . $isAdmin . '<br>';
             // showUtilisateurs($isAdmin, $controller);
         }
         break;
