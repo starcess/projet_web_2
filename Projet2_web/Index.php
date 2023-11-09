@@ -171,12 +171,22 @@ switch ($method | $uri) {
         if (isset($_POST['login'])) {
             $isAdmin = logTheUser($controller_utilisateur);
             echo 'The user exist ? ' . $isAdmin . '<br>';
+            if ($isAdmin) {
+                $data = $_POST;
+                $user = $controller_utilisateur->getUserByEmail($data['email']);
+                echo 'logged user :  ';
+                print_r($user) . '<br>';
+                // header('Location: __DIR__' . '/../Views/Account.php');
+            }
             // showUtilisateurs($isAdmin, $controller);
         }
         break;
     case ($method == 'POST' && $uri == '/signup'):
         if (isset($_POST['signup'])) {
             $userIsCreated = createUser($controller_utilisateur);
+            echo 'userIsCreated : ' . $userIsCreated . '<br>';
+            // header('Location: __DIR__' . '/../Views/Account.php');
+
         }
         break;
     default:
