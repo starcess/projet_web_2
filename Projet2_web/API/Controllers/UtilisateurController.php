@@ -98,6 +98,14 @@ class UtilisateurController
   }
 
 
+
+
+  public function logout()
+  {
+    $_SESSION['isAuthenticated'] = false;
+  }
+
+
 }
 
 

@@ -32,21 +32,23 @@ if (session_status() == PHP_SESSION_NONE) {
             </ul> -->
             </div>
             <div class="About">
-                <form action="#" method="post" id="profile-form">
+                <form action="/projet_web_2/Projet2_web/updatePassword" method="post" id="profile-form">
                     <label for="nom">Nom:</label>
-                    <input type="text" id="nom" name="nom" placeholder="Doe" required><br>
+                    <input type="text" id="nom" name="nom" disabled required><br>
 
                     <label for="prenom">Prenom:</label>
-                    <input type="text" id="prenom" name="prenom" placeholder="John" required><br>
+                    <input type="text" id="prenom" name="prenom" disabled required><br>
 
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="a@a" required><br>
+                    <input type="email" id="email" name="email" disabled required><br>
 
                     <label for="new_password">New Password:</label>
                     <div class="password_form">
-                        <input type="password" id="new_password" name="new_password" required><br>
+                        <input type="password" id="new_password" name="updatePassword" required><br>
                         <button type="submit" class="update-button">Update Password</button>
                     </div>
+
+                    <button type="button" class="logout-button" onclick="logTheUserOut()">Logout</button>
 
                 </form>
 
@@ -56,5 +58,60 @@ if (session_status() == PHP_SESSION_NONE) {
     </div>
 
 </body>
+
+
+
+<script>
+    function logTheUserOut() {
+        const url = '/projet_web_2/Projet2_web/logout';
+        // echo "URI : " . $uri . "<br>";
+        // echo "Méthode : " . $method . "<br>";
+        // console.log("hi");
+        fetch(url)
+            .then(response => {
+                if (response.status !== 200) {
+                    console.log('Error: Non-200 status code');
+                    return [];
+                }
+                // console.log(response.json())
+                return response.url;
+            }).then(data => {
+                window.location.href = data;
+            })
+            .catch(error => console.log(error));
+    }
+
+</script>
+
+
+
+<script>
+    const url = '/projet_web_2/Projet2_web/getUserInfo';
+    // echo "URI : " . $uri . "<br>";
+    // echo "Méthode : " . $method . "<br>";
+    // console.log("hi");
+    fetch(url)
+        .then(response => {
+            if (response.status !== 200) {
+                console.log('Error: Non-200 status code');
+                return [];
+            }
+            // console.log(response.json())
+            return response.json();
+        }).then(data => {
+            let nomInput = document.getElementById('nom');
+            let prenomInput = document.getElementById('prenom');
+            let emailInput = document.getElementById('email');
+
+            nomInput.value = data.Nom;
+            prenomInput.value = data.Prenom;
+            emailInput.value = data.Courriel;
+            console.log(nomInput)
+            console.log(prenomInput)
+            console.log(emailInput)
+        })
+        .catch(error => console.log(error));
+
+</script>
 
 </html>

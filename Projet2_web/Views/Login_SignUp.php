@@ -59,7 +59,9 @@ if (session_status() == PHP_SESSION_NONE) {
         </div>
     </div>
 
-    <script>
+</body>
+
+<script>
         function showSignUpForm() {
             document.getElementById("signup-form").style.display = "block";
             document.getElementById("login-form").style.display = "none";
@@ -78,6 +80,5 @@ if (session_status() == PHP_SESSION_NONE) {
             document.getElementById("showLoginOrSignupButton").style.display = "block";
         }
     </script>
-</body>
 
 </html>

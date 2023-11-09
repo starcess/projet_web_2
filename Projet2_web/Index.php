@@ -20,6 +20,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 // $_SESSION['info'] = "blah";
 
+$userInfo;
 $controller_utilisateur = new UtilisateurController($pdo);
 $controller_produit = new ProduitController($pdo);
 $uri = $_SERVER['REQUEST_URI'];
@@ -84,9 +85,11 @@ function showUtilisateurs($isAdmin, $controller_utilisateur)
 
 function endConnection()
 {
-    // session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
     session_destroy();
-    echo json_encode(["success" => true, "message" => "Déconnecté avec succès"]);
+    // return json_encode(["success" => true, "message" => "Déconnecté avec succès"]);
 }
 
 
@@ -171,11 +174,13 @@ switch ($method | $uri) {
             echo 'The user exist ? ' . $isAdmin . '<br>';
             if ($isAdmin) {
                 $data = $_POST;
-                $user = $controller_utilisateur->getUserByEmail($data['email']);
-                echo 'logged user :  ';
-                print_r($user) . '<br>';
+                $userInfo = $controller_utilisateur->getUserByEmail($data['email']);
+                // $userInfo = $user;
+                // echo 'logged user :  ';
+                // print_r($user) . '<br>';
+                $_SESSION['email'] = $data['email'];
                 header('Location: __DIR__' . '/../Views/Account.php');
-            }else{
+            } else {
                 header('Location: __DIR__' . '/../Views/Login_SignUp.php');
             }
             // showUtilisateurs($isAdmin, $controller);
@@ -190,6 +195,33 @@ switch ($method | $uri) {
             } else {
                 header('Location: __DIR__' . '/../Views/Login_SignUp.php');
             }
+        }
+        break;
+    case ($method == 'GET' && $uri == '/logout'):
+        $controller_utilisateur->logout();
+        $isLoggedOut = $_SESSION['isAuthenticated'] == false;
+        if ($isLoggedOut) {
+            endConnection();
+            return header('Location: __DIR__' . '/../Views/Login_SignUp.php');
+        }
+        break;
+    case ($method == 'GET' && $uri == '/getUserInfo'):
+        if (isset($_SESSION['email'])) {
+            $email = $_SESSION['email'];
+            $user = $controller_utilisateur->getUserByEmail($email);
+            $userToSend = [
+                'Courriel' => $user['Courriel'],
+                'Nom' => $user['Nom'],
+                'Prenom' => $user['Prenom'],
+                'id' => $user['id']
+            ];
+            // print_r($userToSend);
+            echo json_encode($userToSend);
+        }
+        break;
+    case ($method == 'GET' && $uri == '/updatePassword'):
+        if (isset($_POST['updatePassword'])) {
+            
         }
         break;
     default:
