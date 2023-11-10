@@ -20,7 +20,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
         <div  id="popup-form" class="form-container" style="display: block;">
             <!-- <button id="close-popup" class="close-button">x</button> -->
-            <div>Subscribe to Our Newsletter</div>
+            <div>Abonnez-vous à notre infolettre</div>
             <form action="/projet_web_2/Projet2_web/suscribeInfolettre" method="POST">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="a@a" required><br>
@@ -28,10 +28,10 @@ if (session_status() == PHP_SESSION_NONE) {
                 <label for="nom">Nom:</label>
                 <input type="text" id="nom" name="nom" placeholder="Doe" required><br>
 
-                <label for="prenom">Prenom:</label>
+                <label for="prenom">Prénom:</label>
                 <input type="text" id="prenom" name="prenom" placeholder="John" required><br>
 
-                <button type="submit" name="suscribeInfolettre" class="suscribe-button">Suscribe</button>
+                <button type="submit" name="suscribeInfolettre" class="suscribe-button">S'abonner</button>
             </form>
         </div>
     </div>

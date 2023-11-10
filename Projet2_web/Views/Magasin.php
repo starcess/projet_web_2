@@ -36,7 +36,7 @@
             </div>
             <div class="slidecontainer">
                 <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                <p class="slider_value">Value: <span id="demo"></span></p>
+                <p class="slider_value">Valeur: <span id="demo"></span></p>
             </div>
             <button onclick="filtrerProduits()">Filtrer</button>
         </div>

@@ -36,20 +36,20 @@ if (session_status() == PHP_SESSION_NONE) {
                     <label for="nom">Nom:</label>
                     <input type="text" id="nom" name="nom" readonly required><br>
 
-                    <label for="prenom">Prenom:</label>
+                    <label for="prenom">Prénom:</label>
                     <input type="text" id="prenom" name="prenom" readonly required><br>
 
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" readonly required><br>
 
-                    <label for="new_password">New Password:</label>
+                    <label for="new_password">Nouveau mot de passe :</label>
                     <div class="password_form">
                         <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                         <input type="password" id="new_password" name="password" required><br>
-                        <button type="submit" class="update-button" name="updatePassword">Update Password</button>
+                        <button type="submit" class="update-button" name="updatePassword">Modifier mot de passe</button>
                     </div>
 
-                    <button type="button" class="logout-button" onclick="logTheUserOut()">Logout</button>
+                    <button type="button" class="logout-button" onclick="logTheUserOut()">Déconnexion</button>
 
                 </form>
 

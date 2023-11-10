@@ -255,7 +255,8 @@ switch ($method | $uri) {
                 echo 'infolettreIsCreated : ' . $infolettreIsCreated . '<br>';
                 header('Location: __DIR__' . '/../Views/Infolettre.php');
             } else {
-                header('Location: __DIR__' . '/../Views/MessagePage.php?message=already_subscribed');
+                $message = "vous êtes éja inscris dan l'infolettre";
+                header('Location: __DIR__' . '/../Views/MessagePage.php?'.urlencode($message));
                 exit;
             }
         }
