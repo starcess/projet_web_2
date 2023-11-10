@@ -253,16 +253,15 @@ switch ($method | $uri) {
             $infolettreIsCreated = $controller_infolettre->createInfolettre($data);
             if ($infolettreIsCreated) {
                 echo 'infolettreIsCreated : ' . $infolettreIsCreated . '<br>';
-                // header('Location: __DIR__' . '/../Views/Account.php');
+                header('Location: __DIR__' . '/../Views/Infolettre.php');
             } else {
-                echo 'DB_7 : you are already suscribed <br>';
+                header('Location: __DIR__' . '/../Views/MessagePage.php?message=already_subscribed');
+                exit;
             }
         }
         break;
     default:
         echo "Erreur : Chemin non reconnu ou non pris en charge.";
-
-
 }
 
 

@@ -34,7 +34,7 @@ class InfolettreController
     public function checkInfolettreAlreadyExist($data)
     {
         $email = $data['email'];
-        $users = $this->getAllInfolettres();
+        $users = $this->model->getAllInfolettre();
         if (count($users) > 0) {
             for ($i = 0; $i < count($users); $i++) {
                 if ($users[$i]['Courriel'] == $email) {

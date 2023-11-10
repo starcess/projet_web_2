@@ -1,3 +1,9 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,19 +12,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Css/infolettre_styles.css">
     <title>Infolettre</title>
-    <header>
-        <?php include('navigation.php'); ?>
-    </header>
 </head>
 
 <body>
-
+<?php include('header.php'); ?>
     <div class="body_container">
 
-        <div action="/projet_web_2/Projet2_web/suscribeInfolettre"  id="popup-form" class="form-container" style="display: block;">
+        <div  id="popup-form" class="form-container" style="display: block;">
             <!-- <button id="close-popup" class="close-button">x</button> -->
             <div>Subscribe to Our Newsletter</div>
-            <form>
+            <form action="/projet_web_2/Projet2_web/suscribeInfolettre" method="POST">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="a@a" required><br>
 
@@ -32,13 +35,22 @@
             </form>
         </div>
     </div>
-    <!-- <details> -->
-    <!-- <button id="open-popup">Open Popup</button> -->
 
-    <!-- </details> -->
+</body>
+
+</html>
 
 
-    <script>
+
+
+
+
+
+
+
+
+
+<script>
         // document.getElementById("open-popup").addEventListener("click", function () {
         //     var popupForm = document.getElementById("popup-form");
         //     if (popupForm.style.display === "none") {
@@ -53,9 +65,3 @@
         //     popupForm.style.display = "none";
         // });
     </script>
-
-
-
-</body>
-
-</html>

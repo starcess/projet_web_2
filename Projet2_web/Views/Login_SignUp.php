@@ -15,7 +15,7 @@ if (session_status() == PHP_SESSION_NONE) {
 </head>
 
 <body>
-    <?php include('navigation.php'); ?>
+    <?php include('header.php'); ?>
 
     <div class="body_box">
         <div class="form-popup" id="myForm">
@@ -54,7 +54,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <input id="login_password" name="password" type="password" required><br><br>
 
                 <button class="login_button" type="submit" name="login">Login</button>
-                <button class="close_button" type="button"  onclick="showLoginOrSignupButton()">close</button>
+                <button class="close_button" type="button" onclick="showLoginOrSignupButton()">close</button>
             </form>
         </div>
     </div>
@@ -62,23 +62,23 @@ if (session_status() == PHP_SESSION_NONE) {
 </body>
 
 <script>
-        function showSignUpForm() {
-            document.getElementById("signup-form").style.display = "block";
-            document.getElementById("login-form").style.display = "none";
-            document.getElementById("showLoginOrSignupButton").style.display = "none";
-        }
+    function showSignUpForm() {
+        document.getElementById("signup-form").style.display = "block";
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("showLoginOrSignupButton").style.display = "none";
+    }
 
-        function showLoginForm() {
-            document.getElementById("signup-form").style.display = "none";
-            document.getElementById("login-form").style.display = "block";
-            document.getElementById("showLoginOrSignupButton").style.display = "none";
-        }
+    function showLoginForm() {
+        document.getElementById("signup-form").style.display = "none";
+        document.getElementById("login-form").style.display = "block";
+        document.getElementById("showLoginOrSignupButton").style.display = "none";
+    }
 
-        function showLoginOrSignupButton(){
-            document.getElementById("signup-form").style.display = "none";
-            document.getElementById("login-form").style.display = "none";
-            document.getElementById("showLoginOrSignupButton").style.display = "block";
-        }
-    </script>
+    function showLoginOrSignupButton() {
+        document.getElementById("signup-form").style.display = "none";
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("showLoginOrSignupButton").style.display = "block";
+    }
+</script>
 
 </html>

@@ -11,10 +11,7 @@
 
 <body>
 
-    <header>
-        <?php include('navigation.php'); ?>
-    </header>
-
+    <?php include('header.php'); ?>
 
     <div class="magasin_container">
 
