@@ -101,7 +101,7 @@ img {
     justify-items: center;
     padding-top: 5%;
     padding-bottom: 5%;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
     gap: 5%;
     padding: 10%;
 }

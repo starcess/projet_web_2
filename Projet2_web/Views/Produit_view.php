@@ -10,42 +10,43 @@
 <body>
 
     <?php include('header.php'); ?>
-<h1>allo</h1>
+    
     <div class="body_container">
-        <div class="img-container">
-            <script>
-                const url= '/projet_web_2/Projet2_web/acceuil_images'
-                fetch(url).then(response => {
-                if (response.status !== 200) {
-                    console.log('Error: Non-200 status code');
-                    return [];
-                }
-                // console.log(response.json())
-                return response.json();
-            })
-            </script>
-        </div>
-        <div class="conteneurTxt">
-            <div class="conteneurDescription">
-                <script>
-                    //url =http://localhost:4208/projet_web_2/Projet2_web/Views/unProduit.php
-                    fetch
-                </script>
-            </div>
-            <div class="conteneurPrix">
-                <script>
-                    fetch
-                </script>
-            </div>
+        <h1>allo</h1>
+        <div class="ImageContainer">
+            <?php
+            // Créez une instance de la classe Produit en passant la connexion à la base de données
+            $produit = new ProduitController();
 
+            // Récupérez un produit spécifique par son ID (remplacez 1 par l'ID du produit que vous souhaitez afficher)
+            $productId = 1;
+            $product = $produit->getProduitById($productId);
+
+            // Vérifiez si le produit a été trouvé
+            if ($product) {
+                $class = '';
+                $nomFichier = pathinfo($product['image'], PATHINFO_FILENAME);
+
+                // Déterminez la classe en fonction du type de produit
+                if (str_contains($product['type'], $cravatte)) {
+                    $class = 'cravatte';
+                } elseif (str_contains($product['type'], $chemise)) {
+                    $class = 'chemise';
+                }
+
+                // Affichez le bloc HTML pour le produit
+                echo "<div id='$nomFichier' class='$class'>";
+                echo "<a href='javascript:getProduit();' class='$class'>";
+                echo "<img src='{$product['image']}' alt='{$product['description']}'>";
+                echo "</a></div>";
+            } else {
+                echo "Produit non trouvé.";
+            }
+            ?>
         </div>
-        <div class="autreProduit">
-            <div class="autreProduit">
-                <script>
-                    fetch
-                </script>
-            </div>
-        </div>
+
+        <!-- Vous pouvez ajouter le code HTML pour afficher la description, le prix, etc. ici -->
+
     </div>
 
 </body>

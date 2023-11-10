@@ -87,9 +87,10 @@ function createUser($controller_utilisateur)
 
 
 
-function sendMessagePage($message){
+function sendMessagePage($message)
+{
     // $message = "vous êtes éja inscris dan l'infolettre";
-    return header('Location: __DIR__' . '/../Views/MessagePage.php?message='.urlencode($message));
+    return header('Location: __DIR__' . '/../Views/MessagePage.php?message=' . urlencode($message));
 }
 
 
@@ -98,7 +99,7 @@ switch ($method | $uri) {
         if ($uri == '/') {
             // print(__DIR__ . '/Views/Accueil.php');
             header('Location: __DIR__' . '/../Views/Accueil.php');
-            // print('YO acceuil_images');
+            // print('YO liste_produit');
             //print(__DIR__ . '/Views/Account.php');
             // $data = $controller_produit->getAllProduit();
             // print_r($data);
@@ -132,20 +133,27 @@ switch ($method | $uri) {
             header('Location: __DIR__' . '/../Views/Accueil.php');
         }
         break;
-    case ($method == 'GET' && $uri == '/acceuil_images'):
-        if ($uri == '/acceuil_images') {
-            // print('YO acceuil_images');
+    case ($method == 'GET' && $uri == '/liste_produit'):
+        if ($uri == '/liste_produit') {
+            // print('YO liste_produit');
             //print(__DIR__ . '/Views/Account.php');
             $data = $controller_produit->getAllProduit();
             // print_r($data);
             echo json_encode($data);
         }
         break;
-    case ($method == 'GET' && $uri == '/../Views/Produit_view.php'):
-        if ($uri == 'Produit_view') {
-            print('YO Produit_view');
-            header('Location: __DIR__' . '/../Views/Produit_view.php');
-        }
+    case ($method == 'POST' && $uri == '/unProduit'):
+        // print('YO Produit_view');
+        // if (isset($_GET['productId'])) {
+        //     $productId = $_GET['productId'];
+        //     // Now, you can use $productId safely
+        // }
+        $data = $_POST;
+        print_r($data);
+        // $produitId = $data['productId'];
+        // echo 'produitId : ' . $produitId . '<br>';
+        // header('Location: __DIR__' . '/../Views/Produit_view.php');
+
         break;
     case ($method == 'GET' && $uri == '/Infolettre'):
         if ($uri == '/Infolettre') {
@@ -168,7 +176,7 @@ switch ($method | $uri) {
                 header('Location: __DIR__' . '/../Views/Account.php');
             } else {
                 $message = "Ce compte n'existe pas";
-                header('Location: __DIR__' .  '/../Views/Login_SignUp.php?message=' . urlencode($message));
+                header('Location: __DIR__' . '/../Views/Login_SignUp.php?message=' . urlencode($message));
             }
             // showUtilisateurs($isAdmin, $controller);
         }
@@ -183,7 +191,7 @@ switch ($method | $uri) {
                 header('Location: __DIR__' . '/../Views/Account.php');
             } else {
                 $message = "Ce courriel a déja été utilisé.";
-                header('Location: __DIR__' . '/../Views/Login_SignUp.php?message='.urlencode($message));
+                header('Location: __DIR__' . '/../Views/Login_SignUp.php?message=' . urlencode($message));
             }
         }
         break;

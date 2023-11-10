@@ -15,128 +15,180 @@
 
     <div class="magasin_container">
 
-
         <div id="filter_container">
             <div class="type">
                 <p class="type_title">TYPE</p>
                 <select id="type">
                     <option value="" selected>Tous les types</option>
-                    <option value="chemise">Chemise</option>
-                    <option value="cravate">Cravate</option>
+                    <option value="chemise">chemise</option>
+                    <option value="cravate">cravate</option>
                 </select>
             </div>
 
-            <div iclass="couleur">
+            <div class="couleur">
                 <p class="type_title">CRAVATTE</p>
                 <select id="couleur">
                     <option value="" selected>Toutes les couleurs</option>
                     <option value="rouge">Rouge</option>
                     <option value="bleu">Bleu</option>
+                    <option value="vert">Vert</option>
+                    <option value="jaune">Jaune</option>
+                    <option value="noir">Noir</option>
+                    <option value="blanc">Blanc</option>
+                    <option value="gris">Gris</option>
+                    <option value="rose">Rose</option>
+                    <option value="violet">Violet</option>
+                    <option value="orange">Orange</option>
+                    <option value="marron">Marron</option>
+                    <option value="turquoise">Turquoise</option>
+                    <option value="argent">Argent</option>
+                    <option value="or">Or</option>
+                    <option value="beige">Beige</option>
+                    <option value="corail">Corail</option>
                 </select>
             </div>
             <div class="slidecontainer">
                 <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
                 <p class="slider_value">Valeur: <span id="demo"></span></p>
             </div>
-            <button onclick="filtrerProduits()">Filtrer</button>
+            <button id="filter_button">Filtrer</button>
         </div>
 
-        <div id="item_container">
-            <?php
-            $directory = getcwd();
-            $img_directory = "../Ressource/products_img";
-            // echo "img_directory : " . $img_directory . "<br>";
-            // print($img_directory);
-            $pattern = "*.png";
-            $cravatte = "cravatte";
-            $chemise = "chemise";
-            if ($img_directory != false) {
-                $files = glob($img_directory . '/' . $pattern);
-                foreach ($files as $file) {
-                    $class = '';
-                    $nomFichier = pathinfo($file, PATHINFO_FILENAME);
-                    // echo "file : " . $file . "<br>";
-                    // print_r($file);
-                    if (str_contains($file, $cravatte)) {
-                        $class = 'cravatte';
-                    } elseif (str_contains($file, $chemise)) {
-                        $class = 'chemise';
-                    }
-                    $msg = "<div id='$nomFichier' class='$class'><a href='javascript:getProduit();' class='$class'><img src='$file' alt='$file'></a></div>";
-                    echo $msg;
-                    // print("DB_9". $msg);
-                }
-            } else {
-                echo "The specified directory does not exist.";
-            }
-            ?>
-        </div>
+        <div id="item_container"></div>
+
+    </div>
 
     </div>
 
 
     <script>
 
-        function getProduit() {
-            const url = 'Produit_view.php';
-
-            fetch(url, {
-                method: "GET",
-                redirect: "follow",
-                headers: {
-                    "Accept": "application/json, text/plain, */*",
-                    "Content-Type": "application/json" // Corrected header name
+        function displayImages(produits) {
+            const divItem_container = document.getElementById('item_container');
+            divItem_container.innerHTML = '';
+            img_directory = "../Ressource/products_img/";
+            produits.forEach(produit => {
+                let className = '';
+                let produitId = produit.image;
+                if (produit.type == 'cravatte') {
+                    className = 'cravatte';
+                } else if (produit.type == 'chemise') {
+                    className = 'chemise';
                 }
-            }).then((res) => {
-                // if (res.status === 200) {
-                //     return res.json();
-                // } else 
-                // if (res.status === 301 || res.status === 302) {
-                const redirectedUrl = res.url;
-                console.log(redirectedUrl);
-                // Redirect to the new URL
-                window.location.href = redirectedUrl;
-                console.log(res.status === 301);
-                // }
-            }).catch(error => {
-                console.error('Fetch error:', error);
+                // Create the div and image elements        
+                // div.className = className;
+                let img = document.createElement('img');
+                img.id = produitId
+                img.src = img_directory + '/' + produitId;
+                img.alt = produitId;
+                img.className = className;
+                img.onclick = afficherUnProduit;
+                divItem_container.appendChild(img);
+                // document.body.appendChild(divItem_container);
             });
+        }
+
+        function afficherUnProduit(event) {
+            let id = event.target.id;
+            console.log('id :', id);
+            let img = document.getElementById(id);
+            console.log('img :', img);
+            getProduitUrl(img.id)
+            // window.location.href = '/../Views/Produit_view.php?=' + produitId;
+        }
+
+        function getProduitUrl(produitId) {
+            const url = '/projet_web_2/Projet2_web/unProduit';
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ "productId": produitId }),
+            })
+                .then(response => {
+                    if (response.status !== 200) {
+                        console.log('Error: Non-200 status code');
+                        return [];
+                    }
+                    console.log(response.text())
+                    // return response.json();
+                }).then(data => {
+                    if (data.length > 0) {
+                        // data.forEach(data => {
+                        // html += `<p>${flower}</p>`;
+                        // console.log(data.image)
+                        // addCarouselImages(data);
+                        // });
+                    }
+
+
+                })
+                .catch(error => console.log(error));
+
         }
 
 
 
+        function getProduits() {
+            const url = '/projet_web_2/Projet2_web/liste_produit';
+            // echo "URI : " . $uri . "<br>";
+            // echo "Méthode : " . $method . "<br>";
+            // console.log("hi");
+            fetch(url)
+                .then(response => {
+                    if (response.status !== 200) {
+                        console.log('Error: Non-200 status code');
+                        return [];
+                    }
+                    //console.log(response.json())
+                    return response.json();
+                }).then(data => {
+                    if (data.length > 0) {
+                        displayImages(data);
+                        // data.forEach(data => {
+
+                        // });
+                    }
+                })
+                .catch(error => console.log(error));
+        }
+
+
+        let typeSelect, couleurSelect, priceRange, priceValue, filterButton;
+
         document.addEventListener("DOMContentLoaded", function () {
-            // Get references to your HTML elements
-            const typeSelect = document.getElementById("type");
-            const couleurSelect = document.getElementById("couleur");
-            const priceRange = document.getElementById("myRange");
-            const priceValue = document.getElementById("demo");
+            // Initialize references to your HTML elements
+            typeSelect = document.getElementById("type");
+            couleurSelect = document.getElementById("couleur");
+            priceRange = document.getElementById("myRange");
+            priceValue = document.getElementById("demo");
+            filterButton = document.getElementById("filter_button");
 
             // Add event listeners to capture user selections
-            typeSelect.addEventListener("change", filterProducts);
-            couleurSelect.addEventListener("change", filterProducts);
-            priceRange.addEventListener("input", filterProducts);
-
-            function filterProducts() {
-                // Get the selected values
-                const selectedType = typeSelect.value;
-                const selectedCouleur = couleurSelect.value;
-                const selectedPrice = priceRange.value;
-
-                // Use the selected values to filter your products
-                // For example, you can show/hide products based on the criteria selected.
-                // You can also use AJAX to request filtered products from a server.
-
-                // For demonstration purposes, we'll just display the selected values.
-                console.log("Selected Type: " + selectedType);
-                console.log("Selected Couleur: " + selectedCouleur);
-                console.log("Selected Price: " + selectedPrice);
-
-                // Update the displayed price value
-                priceValue.textContent = selectedPrice;
-            }
+            typeSelect.addEventListener("change", filtrerProduits);
+            couleurSelect.addEventListener("change", filtrerProduits);
+            priceRange.addEventListener("input", filtrerProduits);
+            filterButton.addEventListener("click", filtrerProduits);
         });
 
+
+        function filtrerProduits() {
+            // Get the selected values
+            const selectedType = typeSelect.value;
+            const selectedCouleur = couleurSelect.value;
+            const selectedPrice = priceRange.value;
+
+            // For demonstration purposes, we'll just display the selected values.
+            console.log("Selected Type: " + selectedType);
+            console.log("Selected Couleur: " + selectedCouleur);
+            console.log("Selected Price: " + selectedPrice);
+
+            // Update the displayed price value
+            priceValue.textContent = selectedPrice;
+        }
+
+        getProduits();
     </script>
 
 
