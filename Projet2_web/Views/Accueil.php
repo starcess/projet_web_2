@@ -115,7 +115,7 @@ session_start();
                     console.log(carrouselDiv)
                 }
                 let btn_AboutMe = document.createElement('button');
-                btn_AboutMe.textContent = "About Me";
+                btn_AboutMe.textContent = "A propos de moi";
                 btn_AboutMe.id = "click"
                 btn_AboutMe.style.position = 'absolute';
                 img = document.createElement('img');

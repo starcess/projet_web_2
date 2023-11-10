@@ -14,7 +14,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Css/nav_styles.css">
-    <title>Neon Navbar</title>
+    <title>Barre de Navigation</title>
 </head>
 
 <header>
