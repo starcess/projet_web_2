@@ -38,7 +38,6 @@ class Utilisateur
     {
         $sql = "INSERT INTO utilisateur (Prenom, Nom, Courriel, MotDePasse) VALUES (?,?,?,?)";
         $stmt = $this->db->prepare($sql);
-
         return $stmt->execute([
             $data['prenom'],
             $data['nom'],
@@ -51,16 +50,19 @@ class Utilisateur
         $sql = "UPDATE utilisateur SET MotDePasse = ? WHERE Courriel = ?";
         $stmt = $this->db->prepare($sql);
 
-        return $stmt->execute([
-            $data['password'], 
-            $data['email']     
-        ]);
+        return $stmt->execute(
+            $data['Nom'],
+            $data['Courriel'],
+            $data['MotDePasse'],
+            $data['InscritInfolettre'],
+            $data['accesUser'],
+            $id
+        );
     }
     public function deleteUser($id)
     {
         $sql = "DELETE FROM utilisateur WHERE id = ?";
         $stmt = $this->db->prepare($sql);
-
         return $stmt->execute([$id]);
     }
 }
