@@ -2,6 +2,7 @@
 
 require __DIR__ . "/API/Controllers/UtilisateurController.php";
 require __DIR__ . "/API/Controllers/ProduitController.php";
+require __DIR__ . "/API/Controllers/InfolettreController.php";
 require __DIR__ . "/API/DbManager/DatabaseManager.php";
 
 $username = "guest";
@@ -23,6 +24,7 @@ if (session_status() == PHP_SESSION_NONE) {
 $userInfo;
 $controller_utilisateur = new UtilisateurController($pdo);
 $controller_produit = new ProduitController($pdo);
+$controller_infolettre = new InfolettreController($pdo);
 $uri = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 // print("RB_74 : " . $method . "<br>");
@@ -248,18 +250,12 @@ switch ($method | $uri) {
             // $prenom = $data['prenom'];
             // $nom = $data['nom'];
             // $email = $data['email'];
-            $user = $controller_utilisateur->getUserByEmail($data['email']);
-            $passwordISModified = $controller_utilisateur->updateUserPassword($data);
-            $userModifier = $controller_utilisateur->getUserByEmail($data['email']);
-            if ($passwordISModified) {
-                header('Location: __DIR__' . '/../Views/Account.php');
+            $infolettreIsCreated = $controller_infolettre->createInfolettre($data);
+            if ($infolettreIsCreated) {
+                echo 'infolettreIsCreated : ' . $infolettreIsCreated . '<br>';
+                // header('Location: __DIR__' . '/../Views/Account.php');
             } else {
-                echo ' Before update : <br>';
-                print_r($user);
-                echo '<br>';
-                echo ' after update : <br>';
-                print_r($userModifier);
-                echo '<br>';
+                echo 'DB_7 : you are already suscribed <br>';
             }
         }
         break;
