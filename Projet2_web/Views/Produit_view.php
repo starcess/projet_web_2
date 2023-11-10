@@ -10,11 +10,19 @@
 <body>
 
     <?php include('header.php'); ?>
-
+<h1>allo</h1>
     <div class="body_container">
         <div class="img-container">
             <script>
-                fetch
+                const url= '/projet_web_2/Projet2_web/acceuil_images'
+                fetch(url).then(response => {
+                if (response.status !== 200) {
+                    console.log('Error: Non-200 status code');
+                    return [];
+                }
+                // console.log(response.json())
+                return response.json();
+            })
             </script>
         </div>
         <div class="conteneurTxt">
