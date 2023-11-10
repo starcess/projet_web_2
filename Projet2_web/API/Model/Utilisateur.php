@@ -46,18 +46,15 @@ class Utilisateur
             $data['password']
         ]);
     }
-    public function updateUser($id, $data)
+    public function updateUserPassword($data)
     {
-        $sql = "UPDATE utilisateur SET name = ?, email = ? WHERE id = ?";
+        $sql = "UPDATE utilisateur SET MotDePasse = ? WHERE Courriel = ?";
         $stmt = $this->db->prepare($sql);
 
-        return $stmt->execute(
-            $data['prenom'],
-            $data['nom'],
-            $data['email'],
-            $data['password'],
-            $id
-        );
+        return $stmt->execute([
+            $data['password'], 
+            $data['email']     
+        ]);
     }
     public function deleteUser($id)
     {

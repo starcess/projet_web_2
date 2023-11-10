@@ -219,9 +219,27 @@ switch ($method | $uri) {
             echo json_encode($userToSend);
         }
         break;
-    case ($method == 'GET' && $uri == '/updatePassword'):
+    case ($method == 'POST' && $uri == '/updatePassword'):
         if (isset($_POST['updatePassword'])) {
-            
+            $data = $_POST;
+            // $prenom = $data['prenom'];
+            // $nom = $data['nom'];
+            // $email = $data['email'];
+            // $password = $data['password'];
+            // echo $password . '<br>';
+            $user = $controller_utilisateur->getUserByEmail($data['email']);
+            $passwordISModified = $controller_utilisateur->updateUserPassword($data);
+            $userModifier = $controller_utilisateur->getUserByEmail($data['email']);
+            if ($passwordISModified) {
+                header('Location: __DIR__' . '/../Views/Account.php');
+            } else {
+                echo ' Before update : <br>';
+                print_r($user);
+                echo '<br>';
+                echo ' after update : <br>';
+                print_r($userModifier);
+                echo '<br>';
+            }
         }
         break;
     default:

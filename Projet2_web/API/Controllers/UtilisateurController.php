@@ -55,9 +55,13 @@ class UtilisateurController
     return false;
   }
 
-  public function updateUser($id, $data)
+  public function updateUserPassword($data)
   {
-    return $this->model->updateUser($id, $data);
+    $data['password'] = password_hash(
+      $data['password'],
+      PASSWORD_DEFAULT
+    );
+    return $this->model->updateUserPassword( $data);
   }
   public function deleteUser($id)
   {

@@ -32,20 +32,21 @@ if (session_status() == PHP_SESSION_NONE) {
             </ul> -->
             </div>
             <div class="About">
-                <form action="/projet_web_2/Projet2_web/updatePassword" method="post" id="profile-form">
+                <form action="/projet_web_2/Projet2_web/updatePassword" method="POST" id="profile-form">
                     <label for="nom">Nom:</label>
-                    <input type="text" id="nom" name="nom" disabled required><br>
+                    <input type="text" id="nom" name="nom" readonly required><br>
 
                     <label for="prenom">Prenom:</label>
-                    <input type="text" id="prenom" name="prenom" disabled required><br>
+                    <input type="text" id="prenom" name="prenom" readonly required><br>
 
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" disabled required><br>
+                    <input type="email" id="email" name="email" readonly required><br>
 
                     <label for="new_password">New Password:</label>
                     <div class="password_form">
-                        <input type="password" id="new_password" name="updatePassword" required><br>
-                        <button type="submit" class="update-button">Update Password</button>
+                        <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
+                        <input type="password" id="new_password" name="password" required><br>
+                        <button type="submit" class="update-button" name="updatePassword">Update Password</button>
                     </div>
 
                     <button type="button" class="logout-button" onclick="logTheUserOut()">Logout</button>
