@@ -72,14 +72,10 @@
             ?>
         </div>
 
-
-
     </div>
 
 
     <script>
-
-
 
         function getProduit() {
             const url = 'Produit_view.php';
@@ -140,8 +136,6 @@
                 priceValue.textContent = selectedPrice;
             }
         });
-
-
 
     </script>
 

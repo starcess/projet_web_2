@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="./Css/filterNav.css"> -->
+    <link rel="stylesheet" href="./Css/MessagePage_styles.css">
     <title>Message</title>
 </head>
 
@@ -12,10 +12,10 @@
 
     <?php include('header.php'); ?>
 
-    <div id="message_container">
+    <div  id="message_container">
         <?php
-        if (isset($_GET['message']) && $_GET['message'] === 'already_subscribed') {
-            echo '<p>You are already subscribed.</p>';
+        if (isset($_GET['message'])) {
+            echo '<p>' . htmlspecialchars($_GET['message']) . '</p>';
         }
         ?>
     </div>

@@ -62,28 +62,6 @@ function logTheUser($controller_utilisateur)
 }
 
 
-function showUtilisateurs($isAdmin, $controller_utilisateur)
-{
-    if ($isAdmin) {
-        echo "Login successful" . "<br>";
-        header('Location:  __DIR__' . '/../../spa.php');
-        // echo 'verifyLoginAuthentification() = true -  eee' . '<br>';
-        $users = $controller_utilisateur->getAllUsers();
-        echo "RB_63" . json_encode($users) . "<br>";
-        // endConnection(); 
-        // header('Location: __DIR__' . '/../../spa.php');
-        return json_encode($users);
-    } else {
-        echo "Login unsuccessful" . "<br>";
-        header('Location: __DIR__' . '/../../Magasin.php');
-        echo 'hi_2';
-        // return json_encode([
-        //     "success" => false,
-        //     "message" => "Échec de la connection de l'utilisateur"
-        // ]);
-    }
-}
-
 
 function endConnection()
 {
@@ -108,6 +86,13 @@ function createUser($controller_utilisateur)
 }
 
 
+
+function sendMessagePage($message){
+    // $message = "vous êtes éja inscris dan l'infolettre";
+    return header('Location: __DIR__' . '/../Views/MessagePage.php?message='.urlencode($message));
+}
+
+
 switch ($method | $uri) {
     case ($method == 'GET' && $uri == '/'):
         if ($uri == '/') {
@@ -118,7 +103,6 @@ switch ($method | $uri) {
             // $data = $controller_produit->getAllProduit();
             // print_r($data);
             // return json_encode($data);
-
         }
         break;
     case ($method == 'GET' && $uri == '/Magasin'):
@@ -176,14 +160,15 @@ switch ($method | $uri) {
             echo 'The user exist ? ' . $isAdmin . '<br>';
             if ($isAdmin) {
                 $data = $_POST;
-                $userInfo = $controller_utilisateur->getUserByEmail($data['email']);
+                // $userInfo = $controller_utilisateur->getUserByEmail($data['email']);
                 // $userInfo = $user;
                 // echo 'logged user :  ';
                 // print_r($user) . '<br>';
                 $_SESSION['email'] = $data['email'];
                 header('Location: __DIR__' . '/../Views/Account.php');
             } else {
-                header('Location: __DIR__' . '/../Views/Login_SignUp.php');
+                $message = "Ce compte n'existe pas";
+                header('Location: __DIR__' .  '/../Views/Login_SignUp.php?message=' . urlencode($message));
             }
             // showUtilisateurs($isAdmin, $controller);
         }
@@ -193,9 +178,12 @@ switch ($method | $uri) {
             $userIsCreated = createUser($controller_utilisateur);
             echo 'userIsCreated : ' . $userIsCreated . '<br>';
             if ($userIsCreated) {
+                $data = $_POST;
+                $_SESSION['email'] = $data['email'];
                 header('Location: __DIR__' . '/../Views/Account.php');
             } else {
-                header('Location: __DIR__' . '/../Views/Login_SignUp.php');
+                $message = "Ce courriel a déja été utilisé.";
+                header('Location: __DIR__' . '/../Views/Login_SignUp.php?message='.urlencode($message));
             }
         }
         break;
@@ -214,8 +202,7 @@ switch ($method | $uri) {
             $userToSend = [
                 'Courriel' => $user['Courriel'],
                 'Nom' => $user['Nom'],
-                'Prenom' => $user['Prenom'],
-                'id' => $user['id']
+                'Prenom' => $user['Prenom']
             ];
             // print_r($userToSend);
             echo json_encode($userToSend);
@@ -233,14 +220,20 @@ switch ($method | $uri) {
             $passwordISModified = $controller_utilisateur->updateUserPassword($data);
             $userModifier = $controller_utilisateur->getUserByEmail($data['email']);
             if ($passwordISModified) {
-                header('Location: __DIR__' . '/../Views/Account.php');
+                // header('Location: __DIR__' . '/../Views/Account.php');
+                $message = "Mot de passe modifié avec succès.";
+                sendMessagePage($message);
+                exit;
             } else {
-                echo ' Before update : <br>';
-                print_r($user);
-                echo '<br>';
-                echo ' after update : <br>';
-                print_r($userModifier);
-                echo '<br>';
+                $message = "Le mot de passe n'a pas été modifié";
+                sendMessagePage($message);
+                exit;
+                // echo ' Before update : <br>';
+                // print_r($user);
+                // echo '<br>';
+                // echo ' after update : <br>';
+                // print_r($userModifier);
+                // echo '<br>';
             }
         }
         break;
@@ -255,8 +248,8 @@ switch ($method | $uri) {
                 echo 'infolettreIsCreated : ' . $infolettreIsCreated . '<br>';
                 header('Location: __DIR__' . '/../Views/Infolettre.php');
             } else {
-                $message = "vous êtes éja inscris dan l'infolettre";
-                header('Location: __DIR__' . '/../Views/MessagePage.php?'.urlencode($message));
+                $message = "Vous êtes déjà inscrit à l'infolettre";
+                sendMessagePage($message);
                 exit;
             }
         }
