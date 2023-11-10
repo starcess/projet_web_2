@@ -242,6 +242,27 @@ switch ($method | $uri) {
             }
         }
         break;
+    case ($method == 'POST' && $uri == '/suscribeInfolettre'):
+        if (isset($_POST['suscribeInfolettre'])) {
+            $data = $_POST;
+            // $prenom = $data['prenom'];
+            // $nom = $data['nom'];
+            // $email = $data['email'];
+            $user = $controller_utilisateur->getUserByEmail($data['email']);
+            $passwordISModified = $controller_utilisateur->updateUserPassword($data);
+            $userModifier = $controller_utilisateur->getUserByEmail($data['email']);
+            if ($passwordISModified) {
+                header('Location: __DIR__' . '/../Views/Account.php');
+            } else {
+                echo ' Before update : <br>';
+                print_r($user);
+                echo '<br>';
+                echo ' after update : <br>';
+                print_r($userModifier);
+                echo '<br>';
+            }
+        }
+        break;
     default:
         echo "Erreur : Chemin non reconnu ou non pris en charge.";
 

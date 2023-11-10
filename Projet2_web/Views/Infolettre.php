@@ -15,7 +15,7 @@
 
     <div class="body_container">
 
-        <div id="popup-form" class="form-container" style="display: block;">
+        <div action="/projet_web_2/Projet2_web/suscribeInfolettre"  id="popup-form" class="form-container" style="display: block;">
             <!-- <button id="close-popup" class="close-button">x</button> -->
             <div>Subscribe to Our Newsletter</div>
             <form>
@@ -28,7 +28,7 @@
                 <label for="prenom">Prenom:</label>
                 <input type="text" id="prenom" name="prenom" placeholder="John" required><br>
 
-                <button type="submit" class="suscribe-button">Suscribe</button>
+                <button type="submit" name="suscribeInfolettre" class="suscribe-button">Suscribe</button>
             </form>
         </div>
     </div>
