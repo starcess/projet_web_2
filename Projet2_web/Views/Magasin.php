@@ -98,6 +98,7 @@
         }
 
         function getProduitUrl(produitId) {
+            // https://stackoverflow.com/questions/54531563/nativescript-js-send-urlsearchparams-into-post-request
             const url = '/projet_web_2/Projet2_web/unProduit';
             fetch(url, {
                 method: 'POST',
@@ -114,13 +115,13 @@
                     console.log(response.text())
                     // return response.json();
                 }).then(data => {
-                    if (data.length > 0) {
-                        // data.forEach(data => {
-                        // html += `<p>${flower}</p>`;
-                        // console.log(data.image)
-                        // addCarouselImages(data);
-                        // });
-                    }
+                    // if (data.length > 0) {
+                    // data.forEach(data => {
+                    // html += `<p>${flower}</p>`;
+                    console.log(data)
+                    // addCarouselImages(data);
+                    // });
+                    // }
 
 
                 })

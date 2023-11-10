@@ -148,12 +148,23 @@ switch ($method | $uri) {
         //     $productId = $_GET['productId'];
         //     // Now, you can use $productId safely
         // }
-        $data = $_POST;
-        print_r($data);
+        // $data = $_POST;
+        // print_r($data);
         // $produitId = $data['productId'];
         // echo 'produitId : ' . $produitId . '<br>';
         // header('Location: __DIR__' . '/../Views/Produit_view.php');
+        $rawData = file_get_contents('php://input');
+        $decodedData = json_decode($rawData, true);
 
+        if (json_last_error() === JSON_ERROR_NONE) {
+            // If JSON data was decoded successfully
+            $produitId = $decodedData['productId'];
+            // echo 'Produit ID: ' . $produitId . '<br>';
+            $_SESSION['produitId'] = $produitId;
+            header('Location: __DIR__' . '/../Views/Produit_view.php');
+        } else {
+            echo 'Error decoding JSON';
+        }
         break;
     case ($method == 'GET' && $uri == '/Infolettre'):
         if ($uri == '/Infolettre') {
