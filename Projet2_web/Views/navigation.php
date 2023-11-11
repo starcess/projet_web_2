@@ -21,10 +21,10 @@ if (session_status() == PHP_SESSION_NONE) {
 
 
     <div class="navbar">
-        <div class="logo">
+        <!-- <div class="logo">
             <a href="javascript:getAccueil();"><img class="logo_image" src="../Ressource/Images/logo_4.png"
                     alt="Logo"></a>
-        </div>
+        </div> -->
         <div class="nav-links">
             <div class="navLink">
                 <a class="navLink_home" href="javascript:getAccueil();">Accueil</a>

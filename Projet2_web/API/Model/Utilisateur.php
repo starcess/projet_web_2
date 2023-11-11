@@ -27,13 +27,6 @@ class Utilisateur
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getUserByEmailAndPassword($email, $password)
-    {
-        $result = $this->db->prepare("SELECT * FROM utilisateur WHERE Courriel=?");
-        $result->execute([$email]);
-        return $result->fetch(PDO::FETCH_ASSOC);
-    }
-
     public function createUser($data)
     {
         $sql = "INSERT INTO utilisateur (Prenom, Nom, Courriel, MotDePasse) VALUES (?,?,?,?)";

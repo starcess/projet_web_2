@@ -68,7 +68,7 @@ class UtilisateurController
     return $this->model->deleteUser($id);
   }
 
-  private function verifyUser($email, $password)
+  private function verifyUserPassword($email, $password)
   {
     $user = $this->model->getUserByEmail($email);
     print_r($user);
@@ -90,7 +90,7 @@ class UtilisateurController
       session_start();
     }
 
-    $userIsInDatabase = $this->verifyUser($email, $password);
+    $userIsInDatabase = $this->verifyUserPassword($email, $password);
     print("UtlisateurContoller - RB_2973 " . $userIsInDatabase . "<br>");
     if ($userIsInDatabase) {
       $_SESSION['isAuthenticated'] = true;
@@ -100,9 +100,6 @@ class UtilisateurController
       print("UtlisateurContoller - RB_2975 " . $_SESSION['isAuthenticated'] . "<br>");
     }
   }
-
-
-
 
   public function logout()
   {
@@ -117,7 +114,7 @@ class UtilisateurController
 
 // public function grantAdminAccess($email, $password)
 // {
-//   if ($this->verifyUser($email, $password)) {
+//   if ($this->verifyUserPassword($email, $password)) {
 //     // $user = $this->model->getUserByEmailAndPassword($email,$password);
 //     // session_start();
 //     // if ($user['role'] == 'admin') {

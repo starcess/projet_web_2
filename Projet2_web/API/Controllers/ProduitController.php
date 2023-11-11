@@ -19,6 +19,19 @@ class ProduitController
   {
     return $this->model->getProduitById($id);
   }
+
+  public function getProduitByName($name)
+  {
+    return $this->model->getProduitByName($name);
+  }
+
+
+  public function filtrerProduits($type, $couleur, $minPrice, $maxPrice)
+  {
+    return $this->model->filtrerProduits($type, $couleur, $minPrice, $maxPrice);
+  }
+
+
   public function createProduit($data)
   {
 
