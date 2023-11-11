@@ -42,14 +42,9 @@ class Utilisateur
     {
         $sql = "UPDATE utilisateur SET MotDePasse = ? WHERE Courriel = ?";
         $stmt = $this->db->prepare($sql);
-
         return $stmt->execute([
-            
-            $data['Courriel'],
-            $data['MotDePasse'],
-            $data['InscritInfolettre'],
-            $data['accesUser']
-            
+            $data['password'], 
+            $data['email']     
         ]);
     }
     public function deleteUser($id)

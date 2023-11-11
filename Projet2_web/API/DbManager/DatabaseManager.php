@@ -6,7 +6,7 @@ class DB
     // Private constructor to prevent direct instantiation
     private function __construct($username, $password)
     {
-        $this->connect($username,$password);
+        $this->connect($username, $password);
     }
 
     // Get the instance of the class
@@ -17,42 +17,28 @@ class DB
         }
         return self::$instance;
     }
-
-    public function connect($username_1, $password_1)
+    private function connect($username, $password)
     {
         try {
-            $username = $username_1;
-            $password = $password_1;
-            $pdo = new PDO(
-                'mysql:host=localhost;dbname=projet2',
-                $username,
-                $password
-            );
-            return $pdo;
+            $this->pdo = new PDO('mysql:host=localhost;dbname=projet2', $username, $password);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             $msg = "Error!: " . $e->getMessage() . "<br>";
             print $msg;
             exit($msg);
         }
     }
+
+    // Get the PDO object
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
 }
+
 
 // Usage:
 // $db = DB::getInstance();
 // $pdo = $db->connect();
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

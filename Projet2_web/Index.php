@@ -7,12 +7,13 @@ require __DIR__ . "/API/DbManager/DatabaseManager.php";
 
 $username = "guest";
 $password = "123";
-// $pdo = DB::getInstance($username, $password);
-$pdo = new PDO(
-    'mysql:host=localhost;dbname=projet2',
-    $username,
-    $password
-);
+$db = DB::getInstance($username, $password);
+$pdo = $db->getPdo();
+// $pdo = new PDO(
+//     'mysql:host=localhost;dbname=projet2',
+//     $username,
+//     $password
+// );
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
