@@ -12,9 +12,7 @@
     <?php include('header.php'); ?>
 <h1>allo</h1>
     <div id="body_container">
-        <div class="ImageContainer">
-
-        </div>
+       
 
     </div>
 
@@ -49,9 +47,7 @@
             const container = document.getElementById('body_container');
 
             // Créez des éléments HTML pour afficher les informations
-            const idElement = document.createElement('p');
-            idElement.textContent = 'ID : ' + data.id;
-
+            const containerTxt = document.createElement('div')            
             const prixElement = document.createElement('p');
             prixElement.textContent = 'Prix : ' + data.prix;
 
@@ -63,10 +59,11 @@
             imageElement.alt = 'Image du produit';
 
             // Ajoutez les éléments à la page
-            container.appendChild(idElement);
-            container.appendChild(prixElement);
-            container.appendChild(descriptionElement);
             container.appendChild(imageElement);
+            container.appendChild(containerTxt);
+            containerTxt.appendChild(prixElement);
+            containerTxt.appendChild(descriptionElement);           
+            
         }
 
     getProduitinfo();
