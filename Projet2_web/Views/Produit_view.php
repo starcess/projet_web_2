@@ -10,8 +10,8 @@
 <body>
 
     <?php include('header.php'); ?>
-
-    <div class="body_container">
+<h1>allo</h1>
+    <div id="body_container">
         <div class="ImageContainer">
 
         </div>
@@ -24,26 +24,50 @@
 <script>
     function getProduitinfo() {
         const url = '/projet_web_2/Projet2_web/unProduitInfo';
-        // echo "URI : " . $uri . "<br>";
-        // echo "Méthode : " . $method . "<br>";
-        // console.log("hi");
         fetch(url)
             .then(response => {
                 if (response.status !== 200) {
                     console.log('Error: Non-200 status code');
                     return [];
                 }
-                console.log(response.text())
-                // return response.json();
+                return response.json();
             }).then(data => {
-                // if (data.length > 0) {
-                //     // data.forEach(data => {
-
-                //     // });
-                // }
-            })
+                console.log(data);
+            // Vous pouvez accéder aux propriétés de l'objet data comme ceci :
+            console.log(data.id);
+            console.log(data.prix);
+            console.log(data.description);
+            console.log(data.image);
+            console.log(data.type);
+            console.log(data.taille);
+            console.log(data.couleur);
+        })
             .catch(error => console.log(error));
     }
+    function afficherInfoProduit(data) {
+            // Sélectionnez l'élément contenant les informations du produit
+            const container = document.getElementById('body_container');
+
+            // Créez des éléments HTML pour afficher les informations
+            const idElement = document.createElement('p');
+            idElement.textContent = 'ID : ' + data.id;
+
+            const prixElement = document.createElement('p');
+            prixElement.textContent = 'Prix : ' + data.prix;
+
+            const descriptionElement = document.createElement('p');
+            descriptionElement.textContent = 'Description : ' + data.description;
+
+            const imageElement = document.createElement('img');
+            imageElement.src = data.image;
+            imageElement.alt = 'Image du produit';
+
+            // Ajoutez les éléments à la page
+            container.appendChild(idElement);
+            container.appendChild(prixElement);
+            container.appendChild(descriptionElement);
+            container.appendChild(imageElement);
+        }
 
     getProduitinfo();
 </script>

@@ -35,22 +35,44 @@ class Produit
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
+    // public function filtrerProduits($type, $couleur, $minPrice, $maxPrice)
+    // {
+    //     $sql = "SELECT * FROM produit WHERE (:type IS NULL OR type = :type) AND 
+    //                                       (:couleur IS NULL OR FIND_IN_SET(:couleur, couleur) > 0) AND 
+    //                                       (:minPrice IS NULL OR prix >= :minPrice) AND 
+    //                                       (:maxPrice IS NULL OR prix <= :maxPrice)";
+
+    //     $result = $this->db->prepare($sql);
+
+    //     $result->bindParam(':type', $type, $type === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+    //     $result->bindParam(':couleur', $couleur, $couleur === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+    //     $result->bindParam(':minPrice', $minPrice, $minPrice === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+    //     $result->bindParam(':maxPrice', $maxPrice, $maxPrice === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+
+    //     $result->execute();
+
+    //     return $result->fetchAll(PDO::FETCH_ASSOC);
+    // }
+
+
     public function filtrerProduits($type, $couleur, $minPrice, $maxPrice)
     {
-        $sql = "SELECT * FROM produit WHERE (:type IS NULL OR type = :type) AND 
-                                          (:couleur IS NULL OR FIND_IN_SET(:couleur, couleur) > 0) AND 
-                                          (:minPrice IS NULL OR prix >= :minPrice) AND 
-                                          (:maxPrice IS NULL OR prix <= :maxPrice)";
-    
+
+        // echo "Type: " . $type . "<br>" . "Couleur: " .
+        //  $couleur . "<br>" . "Minimum Price: " .
+        // $minPrice . "<br>"
+        // . "Maximum Price: " . $maxPrice . "<br>";
+
+        $typePart = $type ? "type = '$type'" : '1'; // '1' is always true, so it acts like ignoring this condition
+        $couleurPart = $couleur ? "FIND_IN_SET('$couleur', couleur) > 0" : '1';
+        $minPricePart = $minPrice ? "prix >= $minPrice" : '1';
+        $maxPricePart = $maxPrice ? "prix <= $maxPrice" : '1';
+
+        $sql = "SELECT * FROM produit WHERE $typePart AND $couleurPart AND $minPricePart AND $maxPricePart";
+
         $result = $this->db->prepare($sql);
-    
-        $result->bindParam(':type', $type, $type === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
-        $result->bindParam(':couleur', $couleur, $couleur === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
-        $result->bindParam(':minPrice', $minPrice, $minPrice === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
-        $result->bindParam(':maxPrice', $maxPrice, $maxPrice === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
-    
         $result->execute();
-    
+        // print_r($result);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 

@@ -164,7 +164,7 @@ switch ($method | $uri) {
             // echo 'produitnoExtension : ' . $produitnoExtension . '<br>';
             // print('json_encode($product)') ;
             $product = $controller_produit->getProduitByName($produitId);
-            print_r($product);
+            // print_r($product);
             //     if ($product) {
             //         print_r($product);
             //         // print_r($userToSend);
@@ -176,6 +176,7 @@ switch ($method | $uri) {
             // } else {
             //     $message = "Ce produit n'existe pas";
             //     sendMessagePage($message);
+            echo json_encode($product);
         }
         break;
     case ($method == 'GET' && $uri == '/Infolettre'):
@@ -287,6 +288,7 @@ switch ($method | $uri) {
         break;
     case ($method == 'POST' && $uri == '/filterValues'):
         $rawData = file_get_contents('php://input');
+        // print_r($rawData);
         $decodedData = json_decode($rawData, true);
         if (json_last_error() === JSON_ERROR_NONE) {
             // print_r($decodedData);
@@ -295,12 +297,13 @@ switch ($method | $uri) {
             $minPrice = $decodedData['minPrice'];
             $maxPrice = $decodedData['maxPrice'];
             $listeProduitsFiltrer = $controller_produit->filtrerProduits($type, $couleur, $minPrice, $maxPrice);
-            print_r($listeProduitsFiltrer);
+            // print_r($listeProduitsFiltrer);
             // https://stackoverflow.com/questions/128560/when-do-i-use-the-php-constant-php-eol
             // echo "Type: " . $type . PHP_EOL;
             // echo "Couleur: " . $couleur . "<br>";
             // echo "Minimum Price: " . $minPrice . "<br>";
             // echo "Maximum Price: " . $maxPrice . "<br>";
+            echo json_encode($listeProduitsFiltrer);
         } else {
             echo 'Error decoding JSON';
         }
