@@ -56,9 +56,8 @@ session_start();
 
     <?php include('./Components/Caroussel.php'); ?>
 
-
     <script>
-        const url = '/projet_web_2/Projet2_web/acceuil_images';
+        const url = '/projet_web_2/Projet2_web/liste_produit';
         // echo "URI : " . $uri . "<br>";
         // echo "Méthode : " . $method . "<br>";
         // console.log("hi");

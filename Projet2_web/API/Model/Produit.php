@@ -2,7 +2,6 @@
 
 class Produit
 {
-
     private $db;
     public function __construct($database)
     {
@@ -14,38 +13,68 @@ class Produit
         $result = $this->db->query($sql);
         return $result->fetchAll();
     }
-    public function getProduitById($id){
+    public function getProduitById($id)
+    {
         $sql = "SELECT * from produit where id=$id ";
         $result = $this->db->query($sql);
         return $result->fetch();
     }
 
-    public function getProduitByType($type){
+    public function getProduitByType($type)
+    {
         $sql = "SELECT * from produit where type=$type ";
         $result = $this->db->query($sql);
         return $result->fetch();
     }
 
-    // 
-    public function getProduitByCouleur($couleur){
-        $sql = "SELECT * from produit where coul$couleur in couleur ";
+    public function getProduitByName($name)
+    {
+        $sql = "SELECT * from produit where image = ? ";
+        $result = $this->db->prepare($sql);
+        $result->execute([$name]);
+        return $result->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function filtrerProduits($type, $couleur, $minPrice, $maxPrice)
+    {
+        $sql = "SELECT * FROM produit WHERE (:type IS NULL OR type = :type) AND 
+                                          (:couleur IS NULL OR FIND_IN_SET(:couleur, couleur) > 0) AND 
+                                          (:minPrice IS NULL OR prix >= :minPrice) AND 
+                                          (:maxPrice IS NULL OR prix <= :maxPrice)";
+    
+        $result = $this->db->prepare($sql);
+    
+        $result->bindParam(':type', $type, $type === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+        $result->bindParam(':couleur', $couleur, $couleur === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+        $result->bindParam(':minPrice', $minPrice, $minPrice === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+        $result->bindParam(':maxPrice', $maxPrice, $maxPrice === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+    
+        $result->execute();
+    
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getProduitByCouleur($couleur)
+    {
+        $sql = "SELECT * from produit where $couleur in couleur ";
         $result = $this->db->query($sql);
         return $result->fetch();
     }
 
-    public function getProduitByPrix($prix){
+    public function getProduitByPrix($prix)
+    {
         $sql = "SELECT * from produit where prix=$prix ";
         $result = $this->db->query($sql);
         return $result->fetch();
     }
 
-    public function getProduitByTaille($taille){
+    public function getProduitByTaille($taille)
+    {
         $sql = "SELECT * from produit where type=$taille ";
         $result = $this->db->query($sql);
         return $result->fetch();
     }
 
-    // 
 
     public function createProduit($data)
     {

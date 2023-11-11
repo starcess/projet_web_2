@@ -76,7 +76,7 @@ body {
     /* border-right: 5px solid  #ffec05; Yellow border on the right side of the .produit element */
     /* padding: 2%; */
     text-align: center;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     cursor: pointer;
 }
 
@@ -85,6 +85,10 @@ body {
 /* .produit:nth-child(3n) {
     border-bottom: 1px solid pink;
 } */
+
+.price_input{
+color: black;
+}
 
 img {
     width: 60%;
@@ -101,7 +105,7 @@ img {
     justify-items: center;
     padding-top: 5%;
     padding-bottom: 5%;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     gap: 5%;
     padding: 10%;
 }
