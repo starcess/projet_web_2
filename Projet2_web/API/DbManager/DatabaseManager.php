@@ -1,16 +1,14 @@
 <?php
 class DB
 {
-    private static $instance; // The single instance of the class
+    private static $instance;
     private $pdo;
 
-    // Private constructor to prevent direct instantiation
     private function __construct($username, $password)
     {
         $this->connect($username, $password);
     }
 
-    // Get the instance of the class
     public static function getInstance($username, $password)
     {
         if (self::$instance === null) {
@@ -30,16 +28,10 @@ class DB
         }
     }
 
-    // Get the PDO object
     public function getPdo()
     {
         return $this->pdo;
     }
 }
-
-
-// Usage:
-// $db = DB::getInstance();
-// $pdo = $db->connect();
 
 ?>

@@ -1,39 +1,46 @@
 /* Button used to open the contact form - fixed at the bottom of the page */
 
-body{
+html,
+body {
     width: 100%;
-    height: 100%; 
+    height: 100%;
     background-color: black;
 }
 
-button{
+/* .body_box {
+    background-color: black;
+} */
+
+button {
     color: black;
     height: 100%;
     width: 100%;
 }
-
-.login_button{
+/* 
+.login_button {
     height: 50px;
     width: 50%;
     color: black;
+    background-color: black;
 }
 
-.signup_button{
+.signup_button {
     height: 50px;
     width: 50%;
     color: black;
-}
+    background-color: black;
+} */
 
-.showSignup{
+.showSignup {
     color: black;
     width: 100%;
-    height: 200%; 
+    height: 200%;
 }
 
-.showLogin{
+.showLogin {
     color: black;
     width: 100%;
-    height: 200%; 
+    height: 200%;
 }
 
 /* .form-container {
@@ -45,11 +52,16 @@ button{
 #signup-form,
 #login-form {
     display: none;
+    background-color: black;
+    padding: 10%;
+    width: 100%;
+    height: 100%;
+    color: black;
 }
 
-#login-form {
+/* #login-form {
     background-color: rgb(0, 0, 0);
-    padding: 10% ;
+    padding: 10%;
     width: 100%;
     height: 100%;
     color: rgb(255, 255, 255);
@@ -57,20 +69,22 @@ button{
 
 #signup-form {
     background-color: black;
-    padding: 10% ;
+    padding: 10%;
     width: 100%;
     height: 100%;
     color: black;
-}
+} */
 
-input{
+input {
     color: black;
 }
 
 
-.form-popup{
+.form-popup {
     color: rgb(0, 0, 0);
+    background-color: black;
 }
+
 /* 
 .body_box{
     width: 100%;
@@ -154,7 +168,3 @@ input{
 .open-button:hover {
     opacity: 1;
 } */
-
-
-
-
