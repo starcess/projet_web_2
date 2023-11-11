@@ -2,6 +2,7 @@
 class DB
 {
     private static $instance; // The single instance of the class
+    private $pdo;
 
     // Private constructor to prevent direct instantiation
     private function __construct($username, $password)
