@@ -43,14 +43,14 @@ class Utilisateur
         $sql = "UPDATE utilisateur SET MotDePasse = ? WHERE Courriel = ?";
         $stmt = $this->db->prepare($sql);
 
-        return $stmt->execute(
-            $data['Nom'],
+        return $stmt->execute([
+            
             $data['Courriel'],
             $data['MotDePasse'],
             $data['InscritInfolettre'],
-            $data['accesUser'],
-            $id
-        );
+            $data['accesUser']
+            
+        ]);
     }
     public function deleteUser($id)
     {

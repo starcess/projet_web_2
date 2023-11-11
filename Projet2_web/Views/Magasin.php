@@ -83,13 +83,30 @@
                 }
                 // Create the div and image elements        
                 // div.className = className;
+
+                const oneProductContainer = document.createElement('div')
+                const prixElement = document.createElement('p');
+                const productNameElement = document.createElement('p');
                 let img = document.createElement('img');
+
+
+                
+                let titleWithoutExtension = produitId.replace(/\.[^/.]+$/, "");
+                prixElement.textContent = 'Prix : ' + produit.prix;
+                productNameElement.textContent = titleWithoutExtension;
+               
+              
                 img.id = produitId
                 img.src = img_directory + '/' + produitId;
                 img.alt = produitId;
                 img.className = className;
                 img.onclick = afficherUnProduit;
-                divItem_container.appendChild(img);
+
+
+                oneProductContainer.appendChild(productNameElement);
+                oneProductContainer.appendChild(prixElement);
+                oneProductContainer.appendChild(img);
+                divItem_container.appendChild(oneProductContainer);
                 // document.body.appendChild(divItem_container);
             });
         }
