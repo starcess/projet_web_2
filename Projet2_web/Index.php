@@ -143,16 +143,6 @@ switch ($method | $uri) {
         }
         break;
     case ($method == 'POST' && $uri == '/unProduit'):
-        // print('YO Produit_view');
-        // if (isset($_GET['productId'])) {
-        //     $productId = $_GET['productId'];
-        //     // Now, you can use $productId safely
-        // }
-        // $data = $_POST;
-        // print_r($data);
-        // $produitId = $data['productId'];
-        // echo 'produitId : ' . $produitId . '<br>';
-        // header('Location: __DIR__' . '/../Views/Produit_view.php');
         $rawData = file_get_contents('php://input');
         $decodedData = json_decode($rawData, true);
 
@@ -164,6 +154,28 @@ switch ($method | $uri) {
             header('Location: __DIR__' . '/../Views/Produit_view.php');
         } else {
             echo 'Error decoding JSON';
+        }
+        break;
+    case ($method == 'GET' && $uri == '/unProduitInfo'):
+        if (isset($_SESSION['produitId'])) {
+            $produitId = $_SESSION['produitId'];
+            // echo 'Produit ID: ' . $produitId . '<br>';
+            // $produitnoExtension = str_replace(".png", "", $produitId);
+            // echo 'produitnoExtension : ' . $produitnoExtension . '<br>';
+            // print('json_encode($product)') ;
+            $product = $controller_produit->getProduitByName($produitId);
+            print_r($product);
+            //     if ($product) {
+            //         print_r($product);
+            //         // print_r($userToSend);
+            //         echo json_encode($product);
+            //     } else {
+            //         $message = "Ce produit n'existe pas";
+            //         sendMessagePage($message);
+            //     } break;
+            // } else {
+            //     $message = "Ce produit n'existe pas";
+            //     sendMessagePage($message);
         }
         break;
     case ($method == 'GET' && $uri == '/Infolettre'):
@@ -271,6 +283,26 @@ switch ($method | $uri) {
                 sendMessagePage($message);
                 exit;
             }
+        }
+        break;
+    case ($method == 'POST' && $uri == '/filterValues'):
+        $rawData = file_get_contents('php://input');
+        $decodedData = json_decode($rawData, true);
+        if (json_last_error() === JSON_ERROR_NONE) {
+            // print_r($decodedData);
+            $type = $decodedData['type'];
+            $couleur = $decodedData['couleur'];
+            $minPrice = $decodedData['minPrice'];
+            $maxPrice = $decodedData['maxPrice'];
+            $listeProduitsFiltrer = $controller_produit->filtrerProduits($type, $couleur, $minPrice, $maxPrice);
+            print_r($listeProduitsFiltrer);
+            // https://stackoverflow.com/questions/128560/when-do-i-use-the-php-constant-php-eol
+            // echo "Type: " . $type . PHP_EOL;
+            // echo "Couleur: " . $couleur . "<br>";
+            // echo "Minimum Price: " . $minPrice . "<br>";
+            // echo "Maximum Price: " . $maxPrice . "<br>";
+        } else {
+            echo 'Error decoding JSON';
         }
         break;
     default:

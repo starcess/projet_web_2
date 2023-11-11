@@ -48,8 +48,14 @@
                 </select>
             </div>
             <div class="slidecontainer">
-                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                <p class="slider_value">Valeur: <span id="demo"></span></p>
+                <p class="type_title">Prix des Produits</p>
+                <label for="minPrice">Minimum</label>
+                <input type="number" id="minPrice" name="minPrice" placeholder="1" class="price_input">
+
+                <label for="maxPrice">Maximum</label>
+                <input type="number" id="maxPrice" name="maxPrice" placeholder="1000" class="price_input">
+                <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                <p class="slider_value">Valeur: <span id="demo"></span></p> -->
             </div>
             <button id="filter_button">Filtrer</button>
         </div>
@@ -112,13 +118,14 @@
                         console.log('Error: Non-200 status code');
                         return [];
                     }
-                    console.log(response.text())
-                    // return response.json();
+                    // console.log(response.text())
+                    return response.url;
                 }).then(data => {
                     // if (data.length > 0) {
                     // data.forEach(data => {
                     // html += `<p>${flower}</p>`;
-                    console.log(data)
+                    // console.log(data)
+                    window.location.href = data;
                     // addCarouselImages(data);
                     // });
                     // }
@@ -156,40 +163,80 @@
         }
 
 
-        let typeSelect, couleurSelect, priceRange, priceValue, filterButton;
+        let typeSelect, couleurSelect, priceRange, priceValue, filterButton, minPriceInput, maxPriceInput;
 
         document.addEventListener("DOMContentLoaded", function () {
             // Initialize references to your HTML elements
             typeSelect = document.getElementById("type");
             couleurSelect = document.getElementById("couleur");
-            priceRange = document.getElementById("myRange");
-            priceValue = document.getElementById("demo");
+            // priceRange = document.getElementById("myRange");
+            // priceValue = document.getElementById("demo");
+            filterButton = document.getElementById("filter_button");
+            minPriceInput = document.getElementById("minPrice");
+            maxPriceInput = document.getElementById("maxPrice");
             filterButton = document.getElementById("filter_button");
 
             // Add event listeners to capture user selections
-            typeSelect.addEventListener("change", filtrerProduits);
-            couleurSelect.addEventListener("change", filtrerProduits);
-            priceRange.addEventListener("input", filtrerProduits);
-            filterButton.addEventListener("click", filtrerProduits);
+            // typeSelect.addEventListener("change", getFiltrationValues);
+            // couleurSelect.addEventListener("change", getFiltrationValues);
+            // priceRange.addEventListener("input", getFiltrationValues);
+            // minPriceInput.addEventListener("input", getFiltrationValues);
+            // maxPriceInput.addEventListener("input", getFiltrationValues);
+            filterButton.addEventListener("click", getFiltrationValues);
         });
 
 
-        function filtrerProduits() {
+        function getFiltrationValues() {
             // Get the selected values
             const selectedType = typeSelect.value;
             const selectedCouleur = couleurSelect.value;
-            const selectedPrice = priceRange.value;
+            const selectedMinPrice = minPriceInput.value;
+            const selectedMaxPrice = maxPriceInput.value;
+            // const selectedPrice = priceRange.value;
 
-            // For demonstration purposes, we'll just display the selected values.
             console.log("Selected Type: " + selectedType);
             console.log("Selected Couleur: " + selectedCouleur);
-            console.log("Selected Price: " + selectedPrice);
+            // console.log("Selected Price: " + selectedPrice);
+            console.log("Selected Min Price: " + selectedMinPrice);
+            console.log("Selected Max Price: " + selectedMaxPrice);
+            // priceValue.textContent = selectedPrice;
+            sendValuesToController(selectedType, selectedCouleur, selectedMinPrice, selectedMaxPrice);
+        }
 
-            // Update the displayed price value
-            priceValue.textContent = selectedPrice;
+
+        function sendValuesToController(type, couleur, minPrice, maxPrice) {
+            let filteredValues = {
+                type: type,
+                couleur: couleur,
+                minPrice: minPrice,
+                maxPrice: maxPrice
+            };
+            let dataToSend = JSON.stringify(filteredValues);
+            let  url = '/projet_web_2/Projet2_web/filterValues';
+           
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: dataToSend
+            })
+                .then(response => {
+                    if (response.status !== 200) {
+                        console.log('Error: Non-200 status code');
+                        return [];
+                    }
+                    console.log(response.json())
+                    // return response.url;
+                }).then(data => {
+                
+                })
+                .catch(error => console.log(error));
+       
         }
 
         getProduits();
+
     </script>
 
 
