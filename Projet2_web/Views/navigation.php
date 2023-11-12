@@ -21,29 +21,33 @@ if (session_status() == PHP_SESSION_NONE) {
 
 
     <div class="navbar">
-        <!-- <div class="logo">
-            <a href="javascript:getAccueil();"><img class="logo_image" src="../Ressource/Images/logo_4.png"
-                    alt="Logo"></a>
-        </div> -->
+
         <div class="nav-links">
-            <div class="navLink">
-                <a class="navLink_home" href="javascript:getAccueil();">Accueil</a>
+            <div class="logo">
+                <a href="javascript:getAccueil();"><img class="logo_image" src="../Ressource/Images/logo_4.png"
+                        alt="Logo"></a>
             </div>
-            <div class="navLink">
-                <a class="navLink_Magasin" href="javascript:getMagasin();">Magasin</a>
-            </div>
-            <!-- <div class="navLink">
-                <a class="navLink_contact" href="Contact.php">Contact</a>
-            </div> -->
-            <div class="navLink">
-                <a class="navLink_account" href="javascript:getAccount();">Page Profile</a>
-            </div>
-            <div class="navLink">
-                <a class="navLink_infolettre" href="javascript:getInfolettre();">Infolettre</a>
-            </div>
-            <div class="navLink">
+
+            <ul class="menu">
+               <li> <div class="navLink">
+                    <a class="navLink_home" href="javascript:getAccueil();">Accueil</a>
+                </div></li>
+                <li> <div class="navLink">
+                    <a class="navLink_Magasin" href="javascript:getMagasin();">Magasin</a>
+                </div></li>
+                <!-- <div class="navLink">
+                    <a class="navLink_contact" href="Contact.php">Contact</a>
+                </div> -->
+                <li> <div class="navLink">
+                    <a class="navLink_account" href="javascript:getAccount();">Page Profile</a>
+                </div></li>
+                <li><div class="navLink">
+                    <a class="navLink_infolettre" href="javascript:getInfolettre();">Infolettre</a>
+                </div></li>
+            </ul>
+            <!--<div class="navLink">
                 <a class="navLink_cart" href="">Panier</a>
-            </div>
+            </div>-->
         </div>
     </div>
 
