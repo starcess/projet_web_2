@@ -4,15 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/produit.css">
     <title>Produit</title>
 </head>
 
 <body>
 
     <?php include('header.php'); ?>
-    <h1 id="produit_title"></h1>
+   
     <div id="body_container">
-
+    <h1 id="produit_title"></h1>
 
     </div>
     <h2>Suggestion</h2>
@@ -55,6 +56,7 @@
         let titleWithoutExtension = imageName.replace(/\.[^/.]+$/, "");
         const titleElement = document.getElementById('produit_title');
         const containerTxt = document.createElement('div')
+        containerTxt.id ="containerTxt"
         const prixElement = document.createElement('p');
         titleElement.textContent = titleWithoutExtension;
         prixElement.textContent = 'Prix : ' + data.prix;
@@ -67,10 +69,11 @@
         imageElement.alt = data.image;
         const randomColor = choisirCouleurAleatoire();
         imageElement.style.borderColor = randomColor;
-
+        imageElement.id = "imageProduit"
         // Ajoutez les éléments à la page
         container.appendChild(imageElement);
         container.appendChild(containerTxt);
+        containerTxt.appendChild(titleElement)
         containerTxt.appendChild(prixElement);
         containerTxt.appendChild(descriptionElement);
 
