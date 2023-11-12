@@ -194,10 +194,6 @@ if (session_status() == PHP_SESSION_NONE) {
     </script>
 
 
-    <script>
-
-    </script>
-
 </header>
 
 </html>

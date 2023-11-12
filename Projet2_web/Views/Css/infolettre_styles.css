@@ -14,7 +14,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     margin-top: 5%;
-    font-size: 200%; 
+    font-size: 150%; 
     text-align: center;
     gap: 5%;
     /* background: url("../../Ressource/Images/inf_bck_2.png");

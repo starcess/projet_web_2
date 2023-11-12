@@ -1,159 +1,75 @@
-/* Button used to open the contact form - fixed at the bottom of the page */
-
-body{
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
     width: 100%;
-    height: 100%; 
     background-color: black;
-}
-
-button{
-    color: black;
-    height: 100%;
-    width: 100%;
-}
-
-.login_button{
-    height: 50px;
-    width: 50%;
-    color: black;
-}
-
-.signup_button{
-    height: 50px;
-    width: 50%;
-    color: black;
-}
-
-.showSignup{
-    color: black;
-    width: 100%;
-    height: 200%; 
-}
-
-.showLogin{
-    color: black;
-    width: 100%;
-    height: 200%; 
-}
-
-/* .form-container {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-} */
-
-#signup-form,
-#login-form {
-    display: none;
-}
-
-#login-form {
-    background-color: rgb(0, 0, 0);
-    padding: 10% ;
-    width: 100%;
-    height: 100%;
-    color: rgb(255, 255, 255);
-}
-
-#signup-form {
-    background-color: black;
-    padding: 10% ;
-    width: 100%;
-    height: 100%;
-    color: black;
-}
-
-input{
-    color: black;
-}
-
-
-.form-popup{
-    color: rgb(0, 0, 0);
-}
-/* 
-.body_box{
-    width: 100%;
-    height: 100%;
-    background: url("../../Ressource/Images/login_2.png");
-    background-size: cover;
-    /* background-repeat: no-repeat; 
-} */
-
-/* 
-.btn_SignUp{
-    background-color: #000000;
     color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    opacity: 0.8;
-    position: fixed;
-    bottom: 23px;
-    right: 28px;
-    width: 280px;
 }
 
-/* The popup form - hidden by default 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    /* Style your header as needed */
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    /* height: 100%;
+    width: 100%; */
+}
+
 .form-popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    /* Center vertically 
-    left: 50%;
-    /* Center horizontally 
-    transform: translate(-50%, -50%);
-    /* Center the form precisely 
-    border: 3px solid #f1f1f1;
-    z-index: 9;
-}
-
-
-.form-container {
-    max-width: 300px;
-    padding: 10px;
-    background-color: white;
-}
-
-.form-container input[type=text],
-.form-container input[type=password] {
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers children vertically */
+    align-items: center;     /* Centers children horizontally */
+    height: 100%;
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #f1f1f1;
-    background: #f1f1f1;
-} */
+}
 
-/* When the inputs get focus, do something */
-/* .form-container input[type=text]:focus,
-.form-container input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-} */
+#showLoginOrSignupButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-color: rgb(0, 0, 0);
+    /* Removed the height and width percentages to allow content-based sizing */
+}
 
-/* Set a style for the submit/login button */
-/* .form-container .btn_SignUp {
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px 20px;
+.showSignup, .showLogin {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: rgb(255, 255, 255);
+    font-size: 100%;
+    font-weight: bolder;
     border: none;
+    padding: 20% 10%;
     cursor: pointer;
-    width: 100%;
-    margin-bottom: 10px;
-    opacity: 0.8;
-} */
+    height: 300%;
+    width: 300%;
+    transition: box-shadow 0.3s ease-in-out;
 
-/* Add a red background color to the cancel button */
-/* .form-container .cancel {
-    background-color: red;
-} */
+    box-shadow: 0 0 15px  rgb(150, 217, 180);
+}
 
-/* Add some hover effects to buttons */
-/* .form-container .btn:hover,
-.open-button:hover {
-    opacity: 1;
-} */
+.showSignup:hover, .showLogin:hover {
+    box-shadow: 0 0 15px rgb(255, 110, 199);
+}
+
+#signup-form, #login-form {
+    display: none;
+    background-color: rgb(228, 149, 149);
+    padding: 10%;
+    color: rgb(245, 237, 237);
+}
+
 
 
 
