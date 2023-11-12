@@ -400,4 +400,17 @@ input:nth-of-type(5):checked~main#carousel {
    box-shadow:0 0 50px #d0d4bc;
 }
 
+#AccueilContainer{
+    display:flex;
+    margin: 50px;
+    justify-content:center;
+    align-items:center;
+}
+#texteBienvenue{
+    margin: 40px;
+}
+#ImageRich img{
+    height: 75%;
+    width: 75%;
 
+}

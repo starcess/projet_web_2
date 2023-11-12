@@ -56,6 +56,66 @@ session_start();
 
     <?php include('./Components/Caroussel.php'); ?>
 
+    <div id="AccueilContainer">
+        <div id="ImageRich">
+            <img src="..\Ressource\Images\Rich_Ricasso.png" alt="Rich Ricasso">
+        </div>
+        <div id="texteBienvenue">
+            <h1> 🌟 Bienvenue chez VaporWave Vogue 🌟</h1>
+
+            <h2>Embrassez l'Élégance Rétro-Futuriste !</h2>
+            <br>
+            <p>Salut à toi, voyageur du temps passionné de mode,</p>
+            <br>
+
+            <p>Es-tu prêt(e) à embarquer pour un voyage à travers les couloirs éclairés au néon du style et de la
+                nostalgie ? Bienvenue chez VaporWave Vogue, où le passé et le futur se rejoignent dans une symphonie
+                d'esthétiques.</p>
+            <br>
+            <p>✨ Ce qui t'attend ✨</p>
+            <br>
+            <ol id="list">
+                <li>💫 Vibes Vaporwave : Plonge dans le monde captivant de la mode inspirée de la vaporwave. Pense à des
+                    couleurs audacieuses, à des graphiques glitchés et à une touche de nostalgie des années 90. Découvre
+                    des vêtements aussi uniques que toi.</li>
+
+                <li>🌐 Sorties Exclusives : Sois le premier à être informé de nos clilections de mode vaporwave
+                    exclusives. Mets la main sur des pièces en édition limitée qui te feront briller dans n'importe
+                    quelle époque.</li>
+                <li>🎨 Expressions Artistiques : Explore l'intersection entre la mode et l'art. Notre infliettre met en
+                    avant le travail d'artistes et de designers talentueux partageant notre passion pour l'esthétique
+                    vaporwave.</li>
+                <li>🌴 Rencontres Virtuelles : Rejoins notre communauté en ligne de passionnés de mode partageant les
+                    mêmes idées. Connecte-toi avec d'autres personnes qui apprécient les vibes oniriques et surréalistes
+                    de la vaporwave.</li>
+                <li>🎁 Concours et Cadeaux : Gagne des prix fabuleux, des cartes-cadeaux et des articles uniques dans
+                    nos concours et cadeaux inspirés de la vaporwave.</li>
+            </ol>
+            <br>
+            <p>Prêt(e) à te téléporter dans le passé du futur avec nous ? Inscris-toi à notre infolettre dès maintenant
+                et deviens partie intégrante du mouvement VaporWave Vogue.</p>
+            <br>
+            <h2>🚀 Comment nous rejoindre 🚀</h2>
+            <br>
+            <p>Faire partie de VaporWave Vogue est aussi facile que de piloter un hoverboard :</p>
+            <br>
+            <ul>
+                <li> Rends-toi sur notre site web et trouve le formulaire d'inscription – il brille aussi fort qu'une
+                    enseigne au néon.</li>
+                <li> Saisis ton adresse e-mail et prépare-toi à partir pour un voyage stylé.</li>
+                <li> Consulte régulièrement ta boîte de réception pour nos mises à jour exclusives et nos offres.</li>
+            </ul>
+            <br>
+            <p>Partageons ensemble l'univers vaporwave et redéfinissons la mode de la manière la plus cool qui soit.</p>
+            <p>Merci de nous rejoindre dans cette aventure haute en couleur !</p>
+            <br>
+            <p>Rester rétro-fabuleux,</p>
+            <p>L'équipe de VaporWave Vogue 🌐✨</p>
+
+
+        </div>
+
+    </div>
     <!-- </div> -->
 </body>
 
