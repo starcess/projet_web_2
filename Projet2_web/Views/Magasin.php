@@ -21,7 +21,7 @@
                 <select id="type">
                     <option value="" selected>Tous les types</option>
                     <option value="chemise">chemise</option>
-                    <option value="cravate">cravate</option>
+                    <option value="cravatte">cravatte</option>
                 </select>
             </div>
 
@@ -39,7 +39,7 @@
                     <option value="rose">Rose</option>
                     <option value="violet">Violet</option>
                     <option value="orange">Orange</option>
-                    <option value="marron">Marron</option>
+                    <option value="brun">brun</option>
                     <option value="turquoise">Turquoise</option>
                     <option value="argent">Argent</option>
                     <option value="or">Or</option>
@@ -83,13 +83,30 @@
                 }
                 // Create the div and image elements        
                 // div.className = className;
+
+                const oneProductContainer = document.createElement('div')
+                const prixElement = document.createElement('p');
+                const productNameElement = document.createElement('p');
                 let img = document.createElement('img');
+
+
+                
+                let titleWithoutExtension = produitId.replace(/\.[^/.]+$/, "");
+                prixElement.textContent = 'Prix : ' + produit.prix;
+                productNameElement.textContent = titleWithoutExtension;
+               
+              
                 img.id = produitId
                 img.src = img_directory + '/' + produitId;
                 img.alt = produitId;
                 img.className = className;
                 img.onclick = afficherUnProduit;
-                divItem_container.appendChild(img);
+
+
+                oneProductContainer.appendChild(productNameElement);
+                oneProductContainer.appendChild(prixElement);
+                oneProductContainer.appendChild(img);
+                divItem_container.appendChild(oneProductContainer);
                 // document.body.appendChild(divItem_container);
             });
         }
@@ -194,11 +211,11 @@
             const selectedMaxPrice = maxPriceInput.value;
             // const selectedPrice = priceRange.value;
 
-            console.log("Selected Type: " + selectedType);
-            console.log("Selected Couleur: " + selectedCouleur);
-            // console.log("Selected Price: " + selectedPrice);
-            console.log("Selected Min Price: " + selectedMinPrice);
-            console.log("Selected Max Price: " + selectedMaxPrice);
+            // console.log("Selected Type: " + selectedType);
+            // console.log("Selected Couleur: " + selectedCouleur);
+            // // console.log("Selected Price: " + selectedPrice);
+            // console.log("Selected Min Price: " + selectedMinPrice);
+            // console.log("Selected Max Price: " + selectedMaxPrice);
             // priceValue.textContent = selectedPrice;
             sendValuesToController(selectedType, selectedCouleur, selectedMinPrice, selectedMaxPrice);
         }
@@ -212,8 +229,8 @@
                 maxPrice: maxPrice
             };
             let dataToSend = JSON.stringify(filteredValues);
-            let  url = '/projet_web_2/Projet2_web/filterValues';
-           
+            let url = '/projet_web_2/Projet2_web/filterValues';
+
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -226,13 +243,17 @@
                         console.log('Error: Non-200 status code');
                         return [];
                     }
-                    console.log(response.json())
-                    // return response.url;
+                    // console.log(response.json())
+                    return response.json();
                 }).then(data => {
-                
+                    if (data.length > 0) {
+                        displayImages(data);
+                        // console.log(data)
+                    }
+
                 })
                 .catch(error => console.log(error));
-       
+
         }
 
         getProduits();
