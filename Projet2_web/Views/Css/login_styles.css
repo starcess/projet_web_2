@@ -1,7 +1,7 @@
 /* Button used to open the contact form - fixed at the bottom of the page */
 
 html,
-body {
+.body_box {
     width: 100%;
     height: 100%;
     background-color: black;
@@ -10,11 +10,28 @@ body {
 /* .body_box {
     background-color: black;
 } */
-
-button {
-    color: black;
-    height: 100%;
+h1{
+    background-color: black;
+    text-align: center;
+    margin-top: 25px;
+}
+br{
     width: 100%;
+    background-color: black;
+}
+button {
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    width: 50%;
+    height: 200%;
+    padding: 10px 20px;
+    margin: 10px;
+    margin-right: 25%;
+    margin-left: 25%;
+    border: 2px solid gray;
+    position: relative;
 }
 /* 
 .login_button {
@@ -31,17 +48,7 @@ button {
     background-color: black;
 } */
 
-.showSignup {
-    color: black;
-    width: 100%;
-    height: 200%;
-}
 
-.showLogin {
-    color: black;
-    width: 100%;
-    height: 200%;
-}
 
 /* .form-container {
     width: 100%;
@@ -81,7 +88,7 @@ input {
 
 
 .form-popup {
-    color: rgb(0, 0, 0);
+    color: black;
     background-color: black;
 }
 

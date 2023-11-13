@@ -1,69 +1,4 @@
-/* .navLink_home {
-    background-color: #e9ff70;
-}
 
-.navLink_account {
-    background-color: #ffd670;
-}
-
-.navLink_produit {
-    background-color: #ff9770;
-} */
-
-/* .navLink_contact {
-    background-color: #70ff8f;
-} */
-
-/* .navLink_cart {
-    background-color: #ff70a6;
-}
-
-.navLink_infolettre {
-    background-color: #38c7ff;
-} */
-
-/* .logo a{
-    /* text-decoration: none;
-    font-size: 200%;
-    font-weight: bold;
-    color: #9400d3; 
-    margin-left: 80%; 
-    width: 25px;
-    height: 25px;
-} */
-
-
-/* 
-.nav-links {
-    display: grid;
-    grid-gap: 0;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    justify-items: flex-end; 
-    align-items: flex-end; 
-    /* transform: skewX(-20deg);  
-    color: rgb(255, 255, 255);
-    /* margin: 2% 0%;  
-}
-
-
-
-.nav-links {
-    margin: 0; 
-}
-
-.nav-links a {
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 200%;
-    height: 100%;
-    width: 100%;
-}
-
-.nav-links a:hover {
-    text-decoration: underline;
-} */
-
-/* Reset some default styles for the body and list */
 body {
   height: 90%;
   width: 100%;
@@ -74,15 +9,7 @@ body {
 /* Navbar Styles */
 .navbar {
   background-color: #000;
-  /* display: grid;
-  grid-gap: 0;
-  grid-template-columns: 1fr 2fr; */
-  /* height: 50%; */
-  /* width: 100%;
-  justify-items: center;
-  align-items: center; */
-  /* padding: 0% 0%; Adjust padding as needed */
-  /* border-bottom: 5px solid #ff6ec7;  */
+  
   border-bottom: 5px solid rgb(70, 154, 108);
   border-radius: 0 0 50px 0;
   box-shadow: 0 0 80px 20px rgba(0, 0, 0, .4);
@@ -99,14 +26,10 @@ body {
 
 .nav-links {
   display: flex;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
-  /* repeat(auto-fill, minmax(100px, 1fr)); */
+  
   justify-content: flex-end;
   align-items: center;
-  /* display: flex;  */
-  /* justify-content: flex-end; 
-    align-items: flex-start;  */
-  /* gap: 5%; */
+ 
   width: 100%;
   height: 100%;
   gap: 5%;
@@ -135,11 +58,7 @@ body {
 }
 
 
-/* .navbar {
-  border-radius: 0 0 50px 0;
-  box-shadow: 0 0 80px 20px rgba(0, 0, 0, .4);
-  overflow: hidden;
-} */
+
 
 .navbar:hover {
   border-bottom: 2px solid rgb(var(--r), var(--g), var(--b));
@@ -207,20 +126,4 @@ a {
   text-decoration: none;
   color: white;
 }
-
-/*.logo {
-  position: absolute;
-   float: left;
-  margin-left: 5%;
-  line-height: 50px;
-  font-size: 2em; 
-}*/
-
-
-
-
-
-
-
-
 

@@ -13,6 +13,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <link rel="stylesheet" href="./Css/account.css">
     <title>Document</title>
     <?php include('navigation.php'); ?>
+    <?php include('footer_nav.php'); ?>
 </head>
 
 <body>
