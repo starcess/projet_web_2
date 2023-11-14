@@ -20,6 +20,7 @@ body {
     border-color: #ff71ce; 
 }
 
+
 .prix {
     color: #ffffff; 
     font-size: 1.2em; 
@@ -31,15 +32,13 @@ p {
 }
 
 img{
-    width: 10%;
-    height: 10%;
+    width: 25%;
+    height: 25%;
 }
 
-#imageProduit{
-    height: 50%;
-    width: 50%;
+h2{
+    margin: 10px;
 }
-
 #containerTxt{
     text-align: left;
     align-items: center;

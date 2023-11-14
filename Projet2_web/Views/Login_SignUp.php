@@ -62,6 +62,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
         </div>
     </div>
+    <?php include('footer_nav.php'); ?>
 </body>
 
 <script>

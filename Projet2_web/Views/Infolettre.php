@@ -15,10 +15,10 @@ if (session_status() == PHP_SESSION_NONE) {
 </head>
 
 <body>
-<?php include('header.php'); ?>
+    <?php include('header.php'); ?>
     <div class="body_container">
 
-        <div  id="popup-form" class="form-container" style="display: block;">
+        <div id="popup-form" class="form-container" style="display: block;">
             <!-- <button id="close-popup" class="close-button">x</button> -->
             <div>Abonnez-vous à notre infolettre</div>
             <form action="/projet_web_2/Projet2_web/suscribeInfolettre" method="POST">
@@ -35,33 +35,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </form>
         </div>
     </div>
-
+    <?php include('footer_nav.php'); ?>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-<script>
-        // document.getElementById("open-popup").addEventListener("click", function () {
-        //     var popupForm = document.getElementById("popup-form");
-        //     if (popupForm.style.display === "none") {
-        //         popupForm.style.display = "block";
-        //     } else {
-        //         popupForm.style.display = "none";
-        //     }
-        // });
-
-        // document.getElementById("close-popup").addEventListener("click", function () {
-        //     var popupForm = document.getElementById("popup-form");
-        //     popupForm.style.display = "none";
-        // });
-    </script>
