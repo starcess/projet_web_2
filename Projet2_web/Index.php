@@ -35,290 +35,35 @@ $uri = "/" . implode('/', array_splice($exploded_uri, 3));
 // echo "URI : " . $uri . "<br>";
 // echo "Méthode : " . $method . "<br>";
 
-
-function verifyLoginAuthentification()
-{
-    // session_start();
-    // print_r("RB_9 isSessionStarted : " .$_SESSION . "<br>");
-    // echo "RB_75 :" . isset($_SESSION['admin']) . "<br>";
-    // echo "RB_76 :" . $_SESSION['isAuthenticated'] . "<br>";
-    $isAuthenticated = $_SESSION['isAuthenticated'] == true;
-    // print("RB_1" . $isAuthenticated . "<br>");
-    return $isAuthenticated;
-}
-
-
-function logTheUser($controller_utilisateur)
-{
-    $data = $_POST;
-    $email = $data['email'];
-    $password = $data['password'];
-    echo "email : " . $email . "<br>";
-    echo "password : " . $password . "<br>";
-    $controller_utilisateur->login($email, $password);
-    $result = verifyLoginAuthentification();
-    // print("RB_2" . $result . "<br>");
-    echo "result : " . $result . "<br>";
-    return $result;
-}
-
-
-
-function endConnection()
-{
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    session_destroy();
-    // return json_encode(["success" => true, "message" => "Déconnecté avec succès"]);
-}
-
-
-function createUser($controller_utilisateur)
-{
-    $data = $_POST;
-    $data = $_POST;
-    // $nom = $data['nom'];
-    // $prenom = $data['prenom'];
-    // $email = $data['email'];
-    // $password = $data['password'];
-    $isCreated = $controller_utilisateur->createUser($data);
-    return $isCreated;
-}
-
-
-
-function sendMessagePage($message)
-{
-    // $message = "vous êtes éja inscris dan l'infolettre";
-    return header('Location: __DIR__' . '/../Views/MessagePage.php?message=' . urlencode($message));
-}
-
-
-switch ($method | $uri) {
-    case ($method == 'GET' && $uri == '/'):
+switch ($method) {
+    case 'GET':
         if ($uri == '/') {
-            // print(__DIR__ . '/Views/Accueil.php');
-            header('Location: __DIR__' . '/../Views/Accueil.php');
-            // print('YO liste_produit');
-            //print(__DIR__ . '/Views/Account.php');
-            // $data = $controller_produit->getAllProduit();
-            // print_r($data);
-            // return json_encode($data);
-        }
-        break;
-    case ($method == 'GET' && $uri == '/Magasin'):
-        if ($uri == '/Magasin') {
-            print('YO magasin');
-
-            //print(__DIR__ . '/Views/Magasin.php');
-            header('Location: __DIR__' . '/../Views/Magasin.php');
-        }
-        break;
-    case ($method == 'GET' && $uri == '/Account'):
-        if ($uri == '/Account') {
-            // print('YO Account');
-            //print(__DIR__ . '/Views/Account.php');
-            $bool = verifyLoginAuthentification();
-            if ($bool) {
-                header('Location: __DIR__' . '/../Views/Account.php');
-            } else {
-                header('Location: __DIR__' . '/../Views/Login_SignUp.php');
-            }
-        }
-        break;
-    case ($method == 'GET' && $uri == '/Acceuil'):
-        if ($uri == '/Acceuil') {
-            // print('YO Accueil');
-            //print(__DIR__ . '/Views/Account.php');
-            header('Location: __DIR__' . '/../Views/Accueil.php');
-        }
-        break;
-    case ($method == 'GET' && $uri == '/liste_produit'):
-        if ($uri == '/liste_produit') {
-            // print('YO liste_produit');
-            //print(__DIR__ . '/Views/Account.php');
-            $data = $controller_produit->getAllProduit();
-            // print_r($data);
-            echo json_encode($data);
-        }
-        break;
-    case ($method == 'POST' && $uri == '/unProduit'):
-        $rawData = file_get_contents('php://input');
-        $decodedData = json_decode($rawData, true);
-
-        if (json_last_error() === JSON_ERROR_NONE) {
-            // If JSON data was decoded successfully
-            $produitId = $decodedData['productId'];
-            // echo 'Produit ID: ' . $produitId . '<br>';
-            $_SESSION['produitId'] = $produitId;
-            header('Location: __DIR__' . '/../Views/Produit_view.php');
+            header('Location: /Accueil');
+            exit;
+        } elseif ($uri == '/ajouter') {
+            header('Location: /ajouter');
+            exit;
+        } elseif ($uri == '/RendezVous') {
+            header('Location: /RendezVous');
+            exit;
+        } elseif ($uri == '/afficher') {
+            header('Location: /afficher');
+            exit;
+        } elseif ($uri == '/Contact') {
+            header('Location: /Contact');
+            exit;
         } else {
-            echo 'Error decoding JSON';
+            // Optional: handle unknown URIs
+            header('Location: /404');
+            exit;
         }
         break;
-    case ($method == 'GET' && $uri == '/unProduitInfo'):
-        if (isset($_SESSION['produitId'])) {
-            $produitId = $_SESSION['produitId'];
-            // echo 'Produit ID: ' . $produitId . '<br>';
-            // $produitnoExtension = str_replace(".png", "", $produitId);
-            // echo 'produitnoExtension : ' . $produitnoExtension . '<br>';
-            // print('json_encode($product)') ;
-            $product = $controller_produit->getProduitByName($produitId);
-            // print_r($product);
-            //     if ($product) {
-            //         print_r($product);
-            //         // print_r($userToSend);
-            //         echo json_encode($product);
-            //     } else {
-            //         $message = "Ce produit n'existe pas";
-            //         sendMessagePage($message);
-            //     } break;
-            // } else {
-            //     $message = "Ce produit n'existe pas";
-            //     sendMessagePage($message);
-            echo json_encode($product);
-        }
-        break;
-    case ($method == 'GET' && $uri == '/Infolettre'):
-        if ($uri == '/Infolettre') {
-            // return print('YO Infolettre');
-            header('Location: __DIR__' . '/../Views/Infolettre.php');
-            // exit;
-        }
-        break;
-    case ($method == 'POST' && $uri == '/login'):
-        if (isset($_POST['login'])) {
-            $isAdmin = logTheUser($controller_utilisateur);
-            echo 'The user exist ? ' . $isAdmin . '<br>';
-            if ($isAdmin) {
-                $data = $_POST;
-                // $userInfo = $controller_utilisateur->getUserByEmail($data['email']);
-                // $userInfo = $user;
-                // echo 'logged user :  ';
-                // print_r($user) . '<br>';
-                $_SESSION['email'] = $data['email'];
-                header('Location: __DIR__' . '/../Views/Account.php');
-            } else {
-                $message = "Ce compte n'existe pas";
-                header('Location: __DIR__' . '/../Views/Login_SignUp.php?message=' . urlencode($message));
-            }
-            // showUtilisateurs($isAdmin, $controller);
-        }
-        break;
-    case ($method == 'POST' && $uri == '/signup'):
-        if (isset($_POST['signup'])) {
-            $userIsCreated = createUser($controller_utilisateur);
-            echo 'userIsCreated : ' . $userIsCreated . '<br>';
-            if ($userIsCreated) {
-                $data = $_POST;
-                $_SESSION['email'] = $data['email'];
-                header('Location: __DIR__' . '/../Views/Account.php');
-            } else {
-                $message = "Ce courriel a déja été utilisé.";
-                header('Location: __DIR__' . '/../Views/Login_SignUp.php?message=' . urlencode($message));
-            }
-        }
-        break;
-    case ($method == 'GET' && $uri == '/logout'):
-        $controller_utilisateur->logout();
-        $isLoggedOut = $_SESSION['isAuthenticated'] == false;
-        if ($isLoggedOut) {
-            endConnection();
-            return header('Location: __DIR__' . '/../Views/Login_SignUp.php');
-        }
-        break;
-    case ($method == 'GET' && $uri == '/getUserInfo'):
-        if (isset($_SESSION['email'])) {
-            $email = $_SESSION['email'];
-            $user = $controller_utilisateur->getUserByEmail($email);
-            $userToSend = [
-                'Courriel' => $user['Courriel'],
-                'Nom' => $user['Nom'],
-                'Prenom' => $user['Prenom']
-            ];
-            // print_r($userToSend);
-            echo json_encode($userToSend);
-        }
-        break;
-    case ($method == 'POST' && $uri == '/updatePassword'):
-        if (isset($_POST['updatePassword'])) {
-            $data = $_POST;
-            // $prenom = $data['prenom'];
-            // $nom = $data['nom'];
-            // $email = $data['email'];
-            // $password = $data['password'];
-            // echo $password . '<br>';
-            $user = $controller_utilisateur->getUserByEmail($data['email']);
-            $passwordISModified = $controller_utilisateur->updateUserPassword($data);
-            $userModifier = $controller_utilisateur->getUserByEmail($data['email']);
-            if ($passwordISModified) {
-                // header('Location: __DIR__' . '/../Views/Account.php');
-                $message = "Mot de passe modifié avec succès.";
-                sendMessagePage($message);
-                exit;
-            } else {
-                $message = "Le mot de passe n'a pas été modifié";
-                sendMessagePage($message);
-                exit;
-                // echo ' Before update : <br>';
-                // print_r($user);
-                // echo '<br>';
-                // echo ' after update : <br>';
-                // print_r($userModifier);
-                // echo '<br>';
-            }
-        }
-        break;
-    case ($method == 'POST' && $uri == '/suscribeInfolettre'):
-        if (isset($_POST['suscribeInfolettre'])) {
-            $data = $_POST;
-            // $prenom = $data['prenom'];
-            // $nom = $data['nom'];
-            // $email = $data['email'];
-            $infolettreIsCreated = $controller_infolettre->createInfolettre($data);
-            if ($infolettreIsCreated) {
-                echo 'infolettreIsCreated : ' . $infolettreIsCreated . '<br>';
-                header('Location: __DIR__' . '/../Views/Infolettre.php');
-            } else {
-                $message = "Vous êtes déjà inscrit à l'infolettre";
-                sendMessagePage($message);
-                exit;
-            }
-        }
-        break;
-    case ($method == 'POST' && $uri == '/filterValues'):
-        $rawData = file_get_contents('php://input');
-        // print_r($rawData);
-        $decodedData = json_decode($rawData, true);
-        if (json_last_error() === JSON_ERROR_NONE) {
-            // print_r($decodedData);
-            $type = $decodedData['type'];
-            $couleur = $decodedData['couleur'];
-            $minPrice = $decodedData['minPrice'];
-            $maxPrice = $decodedData['maxPrice'];
-            $listeProduitsFiltrer = $controller_produit->filtrerProduits($type, $couleur, $minPrice, $maxPrice);
-            // print_r($listeProduitsFiltrer);
-            // https://stackoverflow.com/questions/128560/when-do-i-use-the-php-constant-php-eol
-            // echo "Type: " . $type . PHP_EOL;
-            // echo "Couleur: " . $couleur . "<br>";
-            // echo "Minimum Price: " . $minPrice . "<br>";
-            // echo "Maximum Price: " . $maxPrice . "<br>";
-            echo json_encode($listeProduitsFiltrer);
-        } else {
-            echo 'Error decoding JSON';
-        }
-        break;
+
     default:
-        echo "Erreur : Chemin non reconnu ou non pris en charge.";
+        // Handle other HTTP methods or add a default action
+        break;
 }
 
-
-
-
-
-
-
-
+?>
 
 ?>
